@@ -3,10 +3,10 @@ kryptism
 2015/05/22
 
 新型暗号を使ったサービスやアプリのアイデアを募集します。
-興味のある方は
-github@shuudow.dip.jp
+興味のある方は<br/>
+github@shuudow.dip.jp <br/>
 までメールください。<br/>
-GPGの公開鍵を公開します。（20150821）
+GPGの公開鍵を公開します。（20150821）<br/>
 鍵デカ過ぎ。今もっと小さくて済むやつ作ってます。９月２３日まで有効です。<br/>
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 Version: GnuPG v2
