@@ -6,7 +6,38 @@ kryptism
 興味のある方は
 github@shuudow.dip.jp
 までメールください。
+GPGの公開鍵を公開します。（20150821）
+鍵デカ過ぎ。今もっと小さくて済むやつ作ってます。
+-----BEGIN PGP PUBLIC KEY BLOCK-----
+Version: GnuPG v2
 
+mQENBFQhajABCACp82NQiOKhIijfHcWCq7aoId8darVvxcCV04ymtjUPEf7ic76G
+7QHw+WZdB1ij0tndOXCDianLD9UE6Db84oG1EE2rSZmHtsRkh+oz29T1N8fNsAFo
+nUSkoXvcLIKzHlc7zBcteT+GKjbLjq/+l4XmmAZkmfwFKwDlRumMxcDAGzu7TqO5
+TBk7MFOZhpm/l4c9LjCaGrf6RR9snVc/LKUzFZMPiNSeesE3YBtcTmDb0rLUhocS
+XurXy6zjpKy4BG5cnBvqPCLwYJjEH7oKp1NgqYwH2cth3+gnNsAefu7E9wd1WwXU
+Sx0LwWjvVnHwojaBzriK/k//n9miR03iNSgpABEBAAG0I3RlcmFzYXdhICh0ZXN0
+KSA8ZnVtdW11ZUBnbWFpbC5jb20+iQE/BBMBAgApBQJUIWowAhsDBQkB4TOABwsJ
+CAcDAgEGFQgCCQoLBBYCAwECHgECF4AACgkQI7ilwQISYZkJpwf8CPfQXkhhUdTf
+su/L6uSFYgek18CxZZpvD7puB6CvdjsyxPozwAYtAB73RKSaBnFivKxnBEbWFUfF
+w177vIfxMuk/CxrcSc2KOQzUJuH80Z+X2K9yCs/CWfdZOWUZaSAy0sm2P4Gjkbkm
+hYXjzeYbMuCgdSbJHNMNEuxzj3/Av/9b9mmlmojmu65e8rgpSS1CprzYxd5EVL07
+mr24Q7QyHdnfNIuHfTCoFrHw9z8QaFCKSO4YpAj+08po+zDx7ZRazL7TobQr7Ow1
+O17YY9pt+jIH7IFE9ZNffhk8fUOfy7Gc3YnhsFa9hqbZVeHnwC4Bulu+gD2iwpDN
+xWezf3GenLkBDQRUIWowAQgA+3hEqZDXaicp0S2bHvyyHD8WGUpFXjBDt2AmxujW
+imSjmVP03hhJ2mMAKo65NjYesLi1v6B2wrGXZ3Jx4jDtDBFPJnzQrwFQdmR1CnW4
+E0RvCzMPuZwyAo0u6dRtjmPJaKUMutDSDkxJ55XVoUXcekRtRg6SqR/4e+ybRBxG
+vGjQ9d3GqutBgBJt6+p+fSgnCF1YzcEjW9ezo6UMDK18WUr8iNtz2U61H8P4NK+0
+sE9GjW7enSSf+9yU4F6VrZqj4CVZ3CfIIduU/xuNgwCN9yLxy7ltwAZqBb1BCgOH
+gTnTOgGPLexJbATn3IYW07maULcknvgAlREsB+kYfatGnQARAQABiQElBBgBAgAP
+BQJUIWowAhsMBQkB4TOAAAoJECO4pcECEmGZA+IH/2WioITQcfOxvh8oHMqxQpuE
+aXua+qRFatnvlQYEUtXyz+7el1mBC+keqkgQXeNva+aQE2PHqMilScoxzTyoGYUW
+43UnK1Z+HQi0vQP1c2UMKxSADgNfdJd4g55bDlN6aF+EYMR7dpalL04g65uihcia
+8gRD6zY3Pm+YEwSm1FUs9e+/conVTLdopZxPUFankleUEICk3PkIVjBs3E174bCA
+ETZLcDm+GNladmZ3dDefQD2pDCkFKJlulo5MAXff8ZjwTq+hkxhXFGtodoFjfdqs
+zhD9mu6+2PslTZk7YhznJDzcUnLib9ZLmrebusggi2v6E9zISrQIJApz52knsyU=
+=wgvn
+-----END PGP PUBLIC KEY BLOCK-----
 
 ============================================================================================
 まあ、アノニマイザを誰かやりませんかと言う話なんですけど。それ以外の方法は一括ダウンロードして凖同型案号とか
