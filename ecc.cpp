@@ -1523,16 +1523,24 @@ int ecc(int argc,char *argv[]){
 int main(int argc,char *argv[]){
   ZZ z;
   int i;
+  char m[1];
 
   if(strcmp(argv[1],"k")==0)
     keygen();
+
+  cout << "input mode\n";
+  scanf("%s",&m);
+  if(strcmp(m,"e")==0)
+     mv(argv,256);
+
   //  z=to_ZZ("12");
   // init_curve(256);
   //mktbl3(CRV.G.x,CRV.G.y,CRV.G.z);
   //  elp3(CRV.n);
   
-  //     mv(argv,256);
-        dec(argv,256);
+  //
+  if(strcmp(m,"d")==0)
+    dec(argv,256);
 
 return 0;
 }
