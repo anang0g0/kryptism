@@ -1,4 +1,4 @@
-// ecc.cpp : ã‚³ãƒ³ã‚½ãƒ¼ãƒ« ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã®ã‚¨ãƒ³ãƒˆãƒª ãƒã‚¤ãƒ³ãƒˆã‚’å®šç¾©ã—ã¾ã™ã€‚
+// ecc.cpp : ƒRƒ“ƒ\[ƒ‹ ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ÌƒGƒ“ƒgƒŠ ƒ|ƒCƒ“ƒg‚ğ’è‹`‚µ‚Ü‚·B
 //
 
 //#include "stdafx.h"
@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include "hash2.c"
 //#include "sha1.cpp"
-//#include "sha256.cpp"
+#include "sha256.cpp"
 #define _SHA256_WITH_MAIN
 
 #ifdef _SHA256_WITH_MAIN
@@ -27,13 +27,15 @@
 #endif
 #include <fcntl.h>
 
-#pragma comment(lib,"ntl.lib")
+#pragma comment(lib,"ntl.a")
 
 
 
 NTL_CLIENT
 
 //def M32(x) (((1 << 32)-1)&(x)) end
+
+
 
 ZZ KEYDEF;
 ZZ KEYDEF2;
@@ -198,7 +200,7 @@ int dsa2(int argc,char *argv[]){
   FILE *fp;
   char m[32],s[32];
   ZZ xx,s56,s128,s64,s168,gay,yy,md,Pub_key;
-  arr ee;
+  ZZ ee;
   
 
 
@@ -276,12 +278,13 @@ fp=fopen("key.bin","rb");
   cout << yy << endl;
   Pub_key=yy;
   if(n==1024){
-    ee=SHA(argc,argv);
+    ee=sha2(argc,argv);
   }else //if(strcmp(argv[1],"3"))
     md = sha2(argc,argv);
   cout << md << endl;
   //  printf("%08X%08X%08X%08X%08X\n",ee.MD[0],ee.MD[1],ee.MD[2],ee.MD[3],ee.MD[4]);
 //  e= ("0x"+STATUS).hex
+/*
   if(n==1024){
   md=to_ZZ(ee.MD[0]);
   md=(md<<32)^to_ZZ(ee.MD[1]);
@@ -289,7 +292,7 @@ fp=fopen("key.bin","rb");
   md=(md<<32)^to_ZZ(ee.MD[3]);
   md=(md<<32)^to_ZZ(ee.MD[4]);
   }
-
+*/
 //  cout << argv[1] << "'s DSA Signature is \n";
   if(!strcmp(argv[1],"1"))
   dsa(md,gay);
@@ -329,6 +332,10 @@ ZZ n;
 int h;
 ZZ inv;
 } cv;
+typedef struct {
+  unsigned int MD[8];
+} arr;
+
 
 cv CRV;
 po le[256];
@@ -834,7 +841,7 @@ FILE *fp,*fq;
   printf("genkey\n");
 /*
   if(fp=fppen("key.bin","rb")!=NULL){
-    cout << "æ—¢ã«éµãƒ•ã‚¡ã‚¤ãƒ«ãŒå­˜åœ¨ã—ã¾ã™ã€‚æ–°ã—ã„éµãƒ•ã‚¡ã‚¤ãƒ«åã‚’å…¥åŠ›ã—ã¦ãã ã•ã„ã€‚\n";
+    cout << "Šù‚ÉŒ®ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚·BV‚µ‚¢Œ®ƒtƒ@ƒCƒ‹–¼‚ğ“ü—Í‚µ‚Ä‚­‚¾‚³‚¢B\n";
     cin >> filename;
   }
   */
@@ -862,7 +869,7 @@ FILE *fp,*fq;
   hasha(str);
   fwrite(c1.dd,1,16,fp);
   fwrite(c2.dd,1,16,fp);
-  cout << "å…±æœ‰éµseed.keyãŒç”Ÿæˆã•ã‚Œã¾ã—ãŸã€‚" << endl;
+  cout << "‹¤—LŒ®seed.key‚ª¶¬‚³‚ê‚Ü‚µ‚½B" << endl;
   fclose(fp);
 /*
   scanf("%s",&str);
@@ -885,7 +892,7 @@ void ecdh(){
   
   fp=fopen("key.bin","rb");
   if(fp==NULL){
-    cout << "éµãƒ•ã‚¡ã‚¤ãƒ«ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã€‚" << endl;
+    cout << "Œ®ƒtƒ@ƒCƒ‹‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñB" << endl;
     exit(1);
   }
 
@@ -913,7 +920,7 @@ tt[i]=0;
     nn=256;
 /*
   if(nn!=buff){
-    printf("æ›²ç·šã®ã‚¿ã‚¤ãƒ—ãŒé•ã„ã¾ã™\n");
+    printf("‹Èü‚Ìƒ^ƒCƒv‚ªˆá‚¢‚Ü‚·\n");
     exit(1);
   }
   */
@@ -948,7 +955,7 @@ tt[i]=0;
     str[i]=I[i];
   //  cout << to_ZZ(str[i]);
   }
-  cout << "èªè¨¼ãƒ‘ã‚¹ãƒ¯ãƒ¼ãƒ‰ã‚’è¨­å®šã—ã¾ã™\n";
+  cout << "”FØƒpƒXƒ[ƒh‚ğİ’è‚µ‚Ü‚·\n";
   freopen("con","r",stdin);
   scanf("%s",&tt);
   cout << "in_" << tt << endl;
@@ -964,28 +971,59 @@ tt[i]=0;
   
 }
 
+void keygen(){
+  ZZ r;
+  FILE *fp;
+  unsigned char c[32*3];
+  int i;
 
+  fp=fopen("eccpub.key","wb");
+  init_curve(256);
+  mktbl3(CRV.G.x,CRV.G.y,CRV.G.z);
+  cin >> r;
+  elp3(r);
+  cout << "y=" << Pub_key.y << endl;
+
+  for(i=0;i<32;i++){
+    c[i]=Pub_key.x%256;
+  Pub_key.x= Pub_key.x>>8;
+  }
+  for(i=0;i<32;i++){
+    c[i+32]=Pub_key.y%256;
+  Pub_key.y= Pub_key.y>>8;
+  }
+  for(i=0;i<32;i++){
+    c[i+64]=Pub_key.z%256;
+  Pub_key.z= Pub_key.z>>8;
+  }
+  
+  fwrite(c,1,sizeof(c),fp);
+  fclose(fp);
+  for(i=0;i<32*3;i++)
+    c[i]=0;
+  for(i=0;i<32;i++){
+    c[i]=r%256;
+    r=(r>>8);
+  }
+  fp=fopen("eccsec.key","wb");
+  fwrite(c,1,32,fp);
+  fclose(fp);
+
+  exit(1);
+}
 
 
 void mv(char *argv[],int nn){
-FILE *fp,*fq;
-ZZ salt,buf[32],aa;
+  FILE *fp,*fq,*fr;
+  ZZ salt,buf[32],aa,II;
 int i,read_size,ii,c,k,a,I[32],j,count=0,cnt=0;
-unsigned char buff[SIZE],str,*e,m[32],ai[32];
+ unsigned char buff[SIZE],str,*e,m[32],ai[32],key[32*3];
 unsigned char* to;
-
+ ten X;
   
-
-  init_curve(nn);
-//  cin >> Pub_key.x;
-//  cin >> Pub_key.y;
-//  cin >> Pub_key.z;
-
-  mktbl3(Pub_key.x,Pub_key.y,Pub_key.z);
+ init_curve(nn);
   cin >> salt;
-  //SecureRandom.random_number(2**(32*8))
-  elp3(salt);
-
+  //  salt=SecureRandom.random_number(2**(32*8));
   //cout << "P.x=" << P.x << "\n";
 //cout << "P.y=" << P.y << "\n";
 //cout << "P.z=" << P.z << "\n";
@@ -993,38 +1031,79 @@ unsigned char* to;
 
   fp = fopen(argv[1],"rb");
   fq = fopen(argv[2],"wb");
+
+mktbl3(CRV.G.x,CRV.G.y,CRV.G.z);
+elp3(salt);
+ cout << "yr=" << Pub_key.y << endl;
+
+ for(i=0;i<32;i++){
+   key[i]=Pub_key.x%256;
+ Pub_key.x= Pub_key.x>>8;
+ }
+ for(i=0;i<32;i++){
+   key[i+32]=Pub_key.y%256;
+ Pub_key.y= Pub_key.y>>8;
+ }
+ for(i=0;i<32;i++){
+   key[i+64]=Pub_key.z%256;
+ Pub_key.z= Pub_key.z>>8;
+ }
+ fwrite(key,1,sizeof(key),fq);
   
-//c2
-  Gen_key.x=Pub_key.x;
-  Gen_key.y=Pub_key.y;
-  Gen_key.z=Pub_key.z;
+
+ fr=fopen("eccpub.key","rb");
+ fread(key,1,sizeof(key),fr);
+ fclose(fr);
+
+  // cin >> Pub_key.x;
+  // cin >> Pub_key.y;
+  // cin >> Pub_key.z;
+
+  Pub_key.x=0;
+  Pub_key.y=0;
+  Pub_key.z=0;
+  for(i=0;i<32;i++){
+    II=key[i];
+    Pub_key.x^= II<<(i*8);
+}
+  for(i=0;i<32;i++){
+    II=key[i+32];
+    Pub_key.y^= II<<(i*8);
+}
+  cout << "py=" << Pub_key.y << endl;  
+  for(i=0;i<32;i++){
+    II=key[i+64];
+    Pub_key.z^= II<<(i*8);
+}
+  
+  mktbl3(Pub_key.x,Pub_key.y,Pub_key.z);
+  elp3(salt);
+
+  X.x=Pub_key.x;
+  X.y=Pub_key.y;
+  X.z=Pub_key.z;
+  cout << "y=" << X.y << endl;
+
 for(i=0;i<32;i++){
   I[i]=0;buf[i]=0;ai[i]=0;
   }
 
-mktbl3(CRV.G.x,CRV.G.y,CRV.G.z);
-elp3(salt);
-cout << "2\n";
-cout << Pub_key.x << endl;
-cout << Pub_key.y << endl;
-cout << Pub_key.z << endl;
-//c1
 
-while(read_size=fread(buff,1,32,fp)){
+ while((read_size=fread(buff,1,32,fp))>0){
   for(i=0;i<read_size;i++)
       ai[i]=buff[i];
 
   c=0;
   salt=0;
-  for(i=0;i<read_size-1;i++){
-    salt^=to_ZZ(ai[i]);
-    salt=(salt<<8);
+  for(i=0;i<read_size;i++){
+    II=to_ZZ(ai[i]);
+    salt^= II<<(i*8);
   }
-  salt^=to_ZZ(ai[read_size-1]);
+  //  salt^=to_ZZ(ai[read_size-1]);
   c=0;
 
 //    cout << "r=" << read_size << endl;
-  jadd(Gen_key.x,CRV.G.x,Gen_key.y,CRV.G.y,Gen_key.z,CRV.G.z,CRV.p);
+  jadd(X.x,CRV.G.x,X.y,CRV.G.y,X.z,CRV.G.z,CRV.p);
 //  if(read_size==31)
 //  cout << salt << endl;
   salt^=(P.y); //%(256*read_size);
@@ -1033,40 +1112,19 @@ while(read_size=fread(buff,1,32,fp)){
 //  cout << salt << endl;
 //  if(read_size<32)
 //    cout << "sma=" << salt << endl;
-  Gen_key.x=P.x;
-  Gen_key.y=P.y;
-  Gen_key.z=P.z;
+  X.x=P.x;
+  X.y=P.y;
+  X.z=P.z;
   i=read_size-1;
 j=0;
 
 
-  aa=salt;
-  while(aa>0){
-    aa=(aa>>8);
-    j++;
-  }
-//  cout << "j=" << j << endl;
-  if(j<32){
-    a4[cnt]=count;
-    a2[cnt]=31-j+1;
-    salt=(salt<< a2[cnt]*8);
-    a3[cnt]=(salt<< a2[cnt]*8);
-    cnt++;
-  }
-  count++;
-  i=j;
-//  cout << "ij=" << i << endl;
-    for(i=0;i<32;i++)
-      I[i]=0;
-  j=read_size-1;
-  if(j<31)
-    j=31;
-  while(salt>0 && j> -1){
+
+ for(i=0;i<32;i++){
     //  cout << i << endl;
-    buf[j]=salt%256;
-    conv(I[j],buf[j]);
+    buf[i]=salt%256;
+    conv(I[i],buf[i]);
     salt=(salt>>8);
-    j--;
   }
 
     for(i=0;i<32;i++)
@@ -1098,68 +1156,84 @@ void mykey(ZZ key){
 }
 
 
-void dec(ZZ key,int nn,char *argv[]){
-ZZ salt,buf[32],a;
-ten c2;
-unsigned char buff[32],ai[32];
-FILE *fp,*fq;
+void dec(char *argv[],int nn){
+  ZZ salt,buf[32],a,II,r;
+ten R;
+ unsigned char buff[32],ai[32],key2[32],key[32*3];
+ FILE *fp,*fq,*fr;
 int read_size,i,I[32],j,count=0,cnt=0;
 unsigned char m[32];
   
   
 printf("in dec\n");
 init_curve(nn);
+ fr=fopen("eccsec.key","rb");
+ fread(key2,1,32,fr);
+ fclose(fr);
 
-  cin >> Pub_key.x;
-  cin >> Pub_key.y;
-  cin >> Pub_key.z;
-  mktbl3(Pub_key.x,Pub_key.y,Pub_key.z);
-  elp3(key);
-cout << "dcPubkey.x=" << Pub_key.x << "\n";
-cout << "dcPubkey_y=" << Pub_key.y << "\n";
-cout << "dcPubkey.z=" << Pub_key.z << "\n";
-salt=0;
+ r=0;
+ for(i=0;i<32;i++){
+   II=key2[i];
+   r^=(II<<(8*i));
+   }
+ //  cin >> Pub_key.x;
+ // cin >> Pub_key.y;
+ // cin >> Pub_key.z;
 
 
+  R.x=0;
+  R.y=0;
+  R.z=0;
 fp = fopen(argv[2],"wb");
 fq = fopen(argv[1],"rb");
+ fread(key,1,32*3,fq);
+ for(i=0;i<32;i++){
+ II=key[i];
+ R.x^=II<<(i*8);
+ }
+ for(i=0;i<32;i++){
+ II=key[i+32];
+ R.y^=II<<(i*8);
+ }
+ for(i=0;i<32;i++){
+ II=key[i+64];
+ R.z^=II<<(i*8);
+ }
+  mktbl3(R.x,R.y,R.z);
+  elp3(r);
+  //cout << "dcPubkey.x=" << Pub_key.x << "\n";
+  cout << "dcPubkey_y=" << Pub_key.y << "\n";
+  //cout << "dcPubkey.z=" << Pub_key.z << "\n";
+  //salt=0;
 
 while(read_size = fread(buff,1,32,fq)){
 //  cout << "r=" << read_size << endl;
-  for(i=0;i<read_size-1;i++){
+  salt=0;
+  for(i=0;i<read_size;i++){
  //   cout << to_ZZ(buff[i]) << endl;
-    salt^=to_ZZ(buff[i]);
-    salt=(salt<<8);
+    II=to_ZZ(buff[i]);
+    salt^= II<<(i*8);
   }
 //  exit(1);
- salt^=to_ZZ(buff[read_size-1]);
+// salt^=to_ZZ(buff[read_size-1]);
 
+ //padding
   a=salt;
   while(a>0){
     j++;
     a=(a>>8);
   }
-  if(count==a4[cnt] && a3[cnt] > 0){
-  cout << count << "," << a4[cnt] << " " << cnt << " j=" << j << endl;
-    salt=(salt>>8);
-    cout << "less=" << salt << endl;
-    //    printf("%d\n",count);
-    cnt++;
-  }
-  count++;
 
 
   jadd(Pub_key.x,CRV.G.x,Pub_key.y,CRV.G.y,Pub_key.z,CRV.G.z,CRV.p);
   salt^=P.y; //%(256*read_size));
-cout << salt << endl;
+  //cout << salt << endl;
 //  exit(1);
 a=salt;
-  
-  read_size=0;
-  while(a>0){
-    a=(a>>8);
-    read_size++;
-  }
+ Pub_key.x=P.x;  
+ Pub_key.y=P.y;  
+ Pub_key.z=P.z;  
+
    for(i=0;i<32;i++)
      I[i]=0;
     for(i=0;i<read_size;i++){
@@ -1169,9 +1243,9 @@ a=salt;
     }
 
   j=0;
-  for(i=read_size-1;i>-1;i--){
-    m[j]=I[i];
-    j++;
+  for(i=0;i<read_size;i++){
+    m[i]=I[i];
+    //    j++;
   }
 
     fwrite(m,1,read_size,fp);
@@ -1370,7 +1444,7 @@ int ecc(int argc,char *argv[]){
 
   fp=fopen("key.bin","rb");
   if(fp==NULL){
-    printf("éµãƒ•ã‚¡ã‚¤ãƒ«ãŒã‚ã‚Šã¾ã›ã‚“ã€‚\n");
+    printf("Œ®ƒtƒ@ƒCƒ‹‚ª‚ ‚è‚Ü‚¹‚ñB\n");
     exit(1);
   }
   fread(m,1,32,fp);
@@ -1380,15 +1454,15 @@ int ecc(int argc,char *argv[]){
 
   fclose(fp);
   if(!strcmp(argv[1],"x") && argv[2]==NULL){
-    cout << "ecdh Version 0.01Î±ã€€\n å®Ÿè¡ŒãƒŠãƒ³ãƒãƒ¼ã‚’æŒ‡å®šã—ã¦ãã ã•ã„ã€‚" << endl;
-    cout << "ï¼ï¼šè‡ªåˆ†ã®å…¬é–‹éµã‚’ç”Ÿæˆã™ã‚‹ã€‚" << endl;
-    cout << "ï¼‘ï¼šéµãƒ•ã‚¡ã‚¤ãƒ«ã«DSA2ç½²åã‚’ç”Ÿæˆã™ã‚‹" << endl;
-    cout << "ï¼’ï¼šå—ä¿¡ã—ãŸéµã®ç½²åã‚’æ¤œè¨¼ã™ã‚‹" << endl;
-    cout << "ï¼“ï¼šç›¸æ‰‹ã®å…¬é–‹éµã‚’å…¥åŠ›ã—ã¦å…±æœ‰éµã‚’ç”Ÿæˆã™ã‚‹" << endl;
+    cout << "ecdh Version 0.01ƒ¿@\n Àsƒiƒ“ƒo[‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B" << endl;
+    cout << "‚OF©•ª‚ÌŒöŠJŒ®‚ğ¶¬‚·‚éB" << endl;
+    cout << "‚PFŒ®ƒtƒ@ƒCƒ‹‚ÉDSA2–¼‚ğ¶¬‚·‚é" << endl;
+    cout << "‚QFóM‚µ‚½Œ®‚Ì–¼‚ğŒŸØ‚·‚é" << endl;
+    cout << "‚RF‘Šè‚ÌŒöŠJŒ®‚ğ“ü—Í‚µ‚Ä‹¤—LŒ®‚ğ¶¬‚·‚é" << endl;
     exit(1);
   }
   if(salt<1){
-    cout << "éµãŒä¸æ­£ã§ã™ã€‚" << endl;
+    cout << "Œ®‚ª•s³‚Å‚·B" << endl;
     exit(1);
   }
   
@@ -1409,7 +1483,7 @@ int ecc(int argc,char *argv[]){
 	exit(0);
   }
   else if(strcmp(argv[2],"0") && strcmp(argv[2],"1") && strcmp(argv[2],"2") && strcmp(argv[2],"3")){
-    cout << "å­˜åœ¨ã—ãªã„ãƒ¢ãƒ¼ãƒ‰ã§ã™ã€‚" << endl;
+    cout << "‘¶İ‚µ‚È‚¢ƒ‚[ƒh‚Å‚·B" << endl;
     exit(1);
   }
     //    ecdh2();
@@ -1424,8 +1498,6 @@ int ecc(int argc,char *argv[]){
 //  keygen(n);
 //  ecdh();
   //
-//  mktbl3(CRV.G.x,CRV.G.y,CRV.G.z);
-//  elp3(CRV.n);
 /*
   Q.x=CRV.G.x;
   Q.y=CRV.G.y;
@@ -1447,4 +1519,20 @@ int ecc(int argc,char *argv[]){
 //test()
 //rd()
 
-int main(void){return 0;}
+
+int main(int argc,char *argv[]){
+  ZZ z;
+  int i;
+
+  if(strcmp(argv[1],"k")==0)
+    keygen();
+  //  z=to_ZZ("12");
+  // init_curve(256);
+  //mktbl3(CRV.G.x,CRV.G.y,CRV.G.z);
+  //  elp3(CRV.n);
+  
+  //     mv(argv,256);
+        dec(argv,256);
+
+return 0;
+}
