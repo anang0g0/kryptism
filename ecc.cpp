@@ -1,13 +1,11 @@
 // ecc.cpp : コンソール アプリケーションのエントリ ポイントを定義します。
 //
 
-//#include "stdafx.h"
 #include <NTL/ZZ.h>
 #include <stdio.h>
 #include <iostream>
 #include <stdlib.h>
 #include "hash2.c"
-//#include "sha1.cpp"
 #include "sha256.cpp"
 #define _SHA256_WITH_MAIN
 
@@ -16,16 +14,14 @@
 #include <cstring>
 #endif
 
-//#include "sha256.h"
 
 #define _HAS_ITERATOR_DEBUGGING 0
 
-#include <stdio.h>
 #include <string.h>
 #ifdef WIN32
 #include <io.h>
 #endif
-#include <fcntl.h>
+
 
 #pragma comment(lib,"ntl.a")
 
@@ -1016,18 +1012,19 @@ void keygen(){
 void mv(char *argv[],int nn){
   FILE *fp,*fq,*fr;
   ZZ salt,buf[32],aa,II;
-int i,read_size,ii,c,k,a,I[32],j,count=0,cnt=0;
+  int i,read_size,ii,c,k,a,j,count=0,cnt=0,I[32];
  unsigned char buff[SIZE],str,*e,m[32],ai[32],key[32*3];
 unsigned char* to;
  ten X;
   
  init_curve(nn);
-  cin >> salt;
+ // salt=sha2(2,argv);
+   cin >> salt;
   //  salt=SecureRandom.random_number(2**(32*8));
   //cout << "P.x=" << P.x << "\n";
 //cout << "P.y=" << P.y << "\n";
 //cout << "P.z=" << P.z << "\n";
-
+  
 
   fp = fopen(argv[1],"rb");
   fq = fopen(argv[2],"wb");
@@ -1106,7 +1103,7 @@ for(i=0;i<32;i++){
   jadd(X.x,CRV.G.x,X.y,CRV.G.y,X.z,CRV.G.z,CRV.p);
 //  if(read_size==31)
 //  cout << salt << endl;
-  salt^=(P.y); //%(256*read_size);
+  salt^=P.y; //%(256*read_size);
 //cout << salt << endl;
   //  if(read_size==32)
 //  cout << salt << endl;
@@ -1128,7 +1125,7 @@ j=0;
   }
 
     for(i=0;i<32;i++)
-      m[i]=I[i];
+      m[i]=(unsigned char)I[i];
 
 //  if(read_size==32){
     fwrite(m,1,32,fq);
@@ -1529,7 +1526,7 @@ int main(int argc,char *argv[]){
     keygen();
 
   cout << "input mode\n";
-  scanf("%s",&m);
+  cin >> m;
   if(strcmp(m,"e")==0)
      mv(argv,256);
 
