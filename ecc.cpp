@@ -8,6 +8,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include "hash2.c"
+#include "seed2.cpp"
 #include "sha256.cpp"
 #define _SHA256_WITH_MAIN
 
@@ -521,36 +522,12 @@ while(s<t){
 
 void jadd(ZZ x1,ZZ x2,ZZ y1,ZZ y2,ZZ z1,ZZ z2,ZZ mod){
 ZZ u1,u2,s1,s2,h,r,rev,reb,re6;
-  /*
-if(y1*y1%mod!=(x1*x1*x1+CRV.a*x1*(z1*z1*z1*z1)+CRV.b*(z1*z1*z1*z1*z1*z1))%mod){
-    cout << "no point X1\n";
-    cout << x1 << endl;
-    cout << y1 << endl;
-    exit(1);
-    }
-    
-if(y2*y2%mod!=(x2*x2*x2+CRV.a*x2*(z2*z2*z2*z2)+CRV.b*(z2*z2*z2*z2*z2*z2))%mod){
-  cout <<"no point X2\n";
-  exit(1);
-}
-*/
+
 if(x1==x2 && y1==y2 && z1==z2){
     cout <<"infinity devide1\n";
     cout << "Y1=" <<  y1 << "\n";
     cout << "Y2=" << y2 << "\n";
-/*
-  if(y1*y1%mod==(x1*x1*x1+CRV.a*x1*(z1*z1*z1*z1)+CRV.b*(z1*z1*z1*z1*z1*z1))%mod){
-        cout << "X1 on Curve\n";
-      }
-  if(y2*y2%mod==(x2*x2*x2+CRV.a*x2*(z2*z2*z2*z2)+CRV.b*(z2*z2*z2*z2*z2*z2))%mod){
-      cout << "X2 on Curve\n";
-      }
-  else exit(1);
-  */
-    //cout << x1 << "\n";
-    
-}
-//print "in ead2\n"
+
 
 u1=x1*z2*z2;
 u2=x2*z1*z1;
@@ -569,11 +546,7 @@ re6=inv(P.z*P.z*P.z,mod);
 P.x=reb*P.x%mod;
 P.y=re6*P.y%mod;
 P.z=rev*P.z%mod;
-//=end
-//exit()
-//cout <<  P.x << "\n";
-//cout <<  P.y << "\n";
-//cout <<  P.z << "\n";
+
 if(P.y*P.y%CRV.p != (P.x*P.x*P.x+CRV.a*P.x*P.z*P.z*P.z*P.z+CRV.b*P.z*P.z*P.z*P.z*P.z*P.z)%CRV.p){
   cout << "err jadd\n";
   exit(1);
@@ -592,9 +565,6 @@ Q.x= t%mod;
 Q.y= (-8*(y*y*y*y)+m*(s-t))%mod;
 Q.z= 2*y*z%mod;
 
-//cout << Q.x << endl;
-//cout << Q.y << endl;
-//cout << Q.z << endl;
 
 if(Q.y*Q.y%CRV.p != (Q.x*Q.x*Q.x+CRV.a*Q.x*Q.z*Q.z*Q.z*Q.z+CRV.b*Q.z*Q.z*Q.z*Q.z*Q.z*Q.z)%CRV.p){
   cout << "err jdbl\n";
@@ -626,15 +596,6 @@ zz= z;
 // print  a ,"\n"
 // print  CRV_b ,"\n"
 
-/*
-if((xx*xx*xx+a*xx*(zz*zz*zz*zz)+CRV.b*(zz*zz*zz*zz*zz*zz))%pp!=(yy*yy)%pp){
-  cout << "x is nor point\n";
-  cout << xx , "\n";
-  cout << yy , "\n";
-  cout << zz , "\n";
-  exit(1);
-}
-*/
 
  // enzan table
    ll[0].x=xx;
@@ -646,36 +607,17 @@ if(yy==0){
   cout <<  "Y ga " << i << "\n";
   //     exit()
 }
-/*
-if((xx*xx*xx+CRV.a*xx*(zz*zz*zz*zz)+CRV.b*(zz*zz*zz*zz*zz*zz))%CRV.p!=(yy*yy)%CRV.p){
-  cout << "x is n0r point\n";
-  cout << i << "\n";
-  exit(1);
-  }
-*/
+
    jdbl(xx,yy,zz,pp);
    ll[i].x=Q.x;
    ll[i].y=Q.y;
    ll[i].z=Q.z;
-//   cout << ll[i].x << "," << ll[i].y ,"\n";
-/*
-if(ll[i].x > pp){
-     cout << "X > mod" << "\n";
-     exit(1);
-}
-if(ll[i].y > pp){
-     cout << "Y > mod" << "\n";
-     exit(1);
-}
-if(ll[i].z > pp){
-     cout << "Z > mod" << "\n";
-     exit(1);
-}
-  */
+
    xx=ll[i].x;
    yy=ll[i].y;
    zz=ll[i].z;
-} //of for
+} 
+//of for
 //cout << "end of mktbl3\n";
 
 }
@@ -726,9 +668,7 @@ if(j!=0){
 for(i=0;i<l;i++){
   if(L%2 == 1){
     ki[j]=i;
-//    cout << "i= " << i << endl;
-//    cout << "l= " << l << endl;
-//    cout << "L= " << L << endl;
+
     j=j+1;
   }
   L=(L>>1);
@@ -744,27 +684,7 @@ for(i=0;i<l;i++){
 if(k>0){
   for(i=1;i<j;i++){
     if(Pub_key.x != ll[ki[i]].x || Pub_key.y != ll[ki[i]].y || Pub_key.z != ll[ki[i]].z){
-/*
-      cout << "doko1\n";
-      cout << "ki=" <<ll[ki[i]].x << "\n";
-      cout << "pub= " << Pub_key.x << endl;
-      cout << ki[i] << endl;
-      cout << i << endl;
-  */
-      /*
-      if(Pub_key.y*Pub_key.y%CRV.p != (Pub_key.x*Pub_key.x*Pub_key.x+CRV.a*Pub_key.x*(Pub_key.z*Pub_key.z*Pub_key.z*Pub_key.z)+CRV.b*(Pub_key.z*Pub_key.z*Pub_key.z*Pub_key.z*Pub_key.z*Pub_key.z))%CRV.p){
-        cout << "in ellip no point3 at\n";
-//        cout << i << "\n";
-//        cout << Pub_key.x << "\n";
-        exit(1);
-      }
-        
-      if(ll[ki[i]].y*ll[ki[i]].y%CRV.p!=(ll[ki[i]].x*ll[ki[i]].x*ll[ki[i]].x+CRV.a*ll[ki[i]].x*ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z+CRV.b*ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z)%CRV.p){
-//        cout << ki[i] << "\n";
-        cout << "no point in ellip3\n";
-          exit(1);
-      }
-*/
+
       if(Pub_key.y*Pub_key.y%CRV.p == (Pub_key.x*Pub_key.x*Pub_key.x+CRV.a*Pub_key.x*(Pub_key.z*Pub_key.z*Pub_key.z*Pub_key.z)+CRV.b*(Pub_key.z*Pub_key.z*Pub_key.z*Pub_key.z*Pub_key.z*Pub_key.z))%CRV.p){
   //       cout << "doko2\n";
         if(ll[ki[i]].y*ll[ki[i]].y%CRV.p==(ll[ki[i]].x*ll[ki[i]].x*ll[ki[i]].x+CRV.a*ll[ki[i]].x*(ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z)+CRV.b*(ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z))%CRV.p){
@@ -781,13 +701,7 @@ if(k>0){
         }
         // print "doko4\n"
         }
-        /*
-      if(ll[ki[i]].y*ll[ki[i]].y%CRV.p!=(ll[ki[i]].x*ll[ki[i]].x*ll[ki[i]].x+CRV.a*ll[ki[i]].x*ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z+CRV.b*ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z)%CRV.p){
-        cout << "no point ellip at\n";
-        cout << ll[ki[i]].x, "\n";
-        exit(1);
-      }
-          */
+
       //print "end1\n"
       }
     //print "end2\n"
@@ -803,17 +717,7 @@ if(k>0){
   // print "in for loop " , i , " ";
   }
   
-  /*
-if(Pub_key.y*Pub_key.y%CRV.p != (Pub_key.x*Pub_key.x*Pub_key.x+CRV.a*Pub_key.x*Pub_key.z*Pub_key.z*Pub_key.z*Pub_key.z+CRV.b*Pub_key.z*Pub_key.z*Pub_key.z*Pub_key.z*Pub_key.z*Pub_key.z)%CRV.p){
-  cout << "bad1 " << ii << "\n";
-  cout << "j= " << j << "\n";
-  for(jj=0;jj<j;jj++){
-    cout << ki[jj] << " ";
-    }
-  cout << "\n";
-  exit(1);
-}
-*/
+
 }
 
 // no return --  print "after return\n"
@@ -822,8 +726,8 @@ if(Pub_key.y*Pub_key.y%CRV.p != (Pub_key.x*Pub_key.x*Pub_key.x+CRV.a*Pub_key.x*P
 
 //unsigned char gf[16]={0,1,2,4,8,9,11,15,7,14,5,10,13,3,6,12};
 //unsigned char fg[16]={0,1,2,13,3,10,14,8,4,5,11,6,15,12,9,7};
-//unsigned char gf[256]={0,1,2,4,8,16,32,64,128,29,58,116,232,205,135,19,38,76,152,45,90,180,117,234,201,143,3,6,12,24,48,96,192,157,39,78,156,37,74,148,53,106,212,181,119,238,193,159,35,70,140,5,10,20,40,80,160,93,186,105,210,185,111,222,161,95,190,97,194,153,47,94,188,101,202,137,15,30,60,120,240,253,231,211,187,107,214,177,127,254,225,223,163,91,182,113,226,217,175,67,134,17,34,68,136,13,26,52,104,208,189,103,206,129,31,62,124,248,237,199,147,59,118,236,197,151,51,102,204,133,23,46,92,184,109,218,169,79,158,33,66,132,21,42,84,168,77,154,41,82,164,85,170,73,146,57,114,228,213,183,115,230,209,191,99,198,145,63,126,252,229,215,179,123,246,241,255,227,219,171,75,150,49,98,196,149,55,110,220,165,87,174,65,130,25,50,100,200,141,7,14,28,56,112,224,221,167,83,166,81,162,89,178,121,242,249,239,195,155,43,86,172,69,138,9,18,36,72,144,61,122,244,245,247,243,251,235,203,139,11,22,44,88,176,125,250,233,207,131,27,54,108,216,173,71,142};
-//unsigned char fg[256]={0,1,2,26,3,51,27,199,4,224,52,239,28,105,200,76,5,101,225,15,53,142,240,130,29,194,106,249,201,9,77,114,6,139,102,48,226,37,16,34,54,148,143,219,241,19,131,70,30,182,195,126,107,40,250,186,202,155,10,121,78,229,115,167,7,192,140,99,103,222,49,254,227,153,38,180,17,146,35,137,55,209,149,207,144,151,220,190,242,211,20,93,132,57,71,65,31,67,183,164,196,73,127,111,108,59,41,85,251,134,187,62,203,95,156,160,11,22,122,44,79,213,230,173,116,244,168,88,8,113,193,248,141,129,100,14,104,75,223,238,50,198,255,25,228,166,154,120,39,185,181,125,18,69,147,218,36,33,138,47,56,64,210,92,150,189,208,206,145,136,152,179,221,253,191,98,243,87,212,172,21,43,94,159,133,61,58,84,72,110,66,163,32,46,68,217,184,124,165,119,197,24,74,237,128,13,112,247,109,162,60,83,42,158,86,171,252,97,135,178,188,205,63,91,204,90,96,177,157,170,161,82,12,246,23,236,123,118,45,216,80,175,214,234,231,232,174,233,117,215,245,235,169,81,89,176};
+unsigned char gf[256]={0,1,2,4,8,16,32,64,128,29,58,116,232,205,135,19,38,76,152,45,90,180,117,234,201,143,3,6,12,24,48,96,192,157,39,78,156,37,74,148,53,106,212,181,119,238,193,159,35,70,140,5,10,20,40,80,160,93,186,105,210,185,111,222,161,95,190,97,194,153,47,94,188,101,202,137,15,30,60,120,240,253,231,211,187,107,214,177,127,254,225,223,163,91,182,113,226,217,175,67,134,17,34,68,136,13,26,52,104,208,189,103,206,129,31,62,124,248,237,199,147,59,118,236,197,151,51,102,204,133,23,46,92,184,109,218,169,79,158,33,66,132,21,42,84,168,77,154,41,82,164,85,170,73,146,57,114,228,213,183,115,230,209,191,99,198,145,63,126,252,229,215,179,123,246,241,255,227,219,171,75,150,49,98,196,149,55,110,220,165,87,174,65,130,25,50,100,200,141,7,14,28,56,112,224,221,167,83,166,81,162,89,178,121,242,249,239,195,155,43,86,172,69,138,9,18,36,72,144,61,122,244,245,247,243,251,235,203,139,11,22,44,88,176,125,250,233,207,131,27,54,108,216,173,71,142};
+unsigned char fg[256]={0,1,2,26,3,51,27,199,4,224,52,239,28,105,200,76,5,101,225,15,53,142,240,130,29,194,106,249,201,9,77,114,6,139,102,48,226,37,16,34,54,148,143,219,241,19,131,70,30,182,195,126,107,40,250,186,202,155,10,121,78,229,115,167,7,192,140,99,103,222,49,254,227,153,38,180,17,146,35,137,55,209,149,207,144,151,220,190,242,211,20,93,132,57,71,65,31,67,183,164,196,73,127,111,108,59,41,85,251,134,187,62,203,95,156,160,11,22,122,44,79,213,230,173,116,244,168,88,8,113,193,248,141,129,100,14,104,75,223,238,50,198,255,25,228,166,154,120,39,185,181,125,18,69,147,218,36,33,138,47,56,64,210,92,150,189,208,206,145,136,152,179,221,253,191,98,243,87,212,172,21,43,94,159,133,61,58,84,72,110,66,163,32,46,68,217,184,124,165,119,197,24,74,237,128,13,112,247,109,162,60,83,42,158,86,171,252,97,135,178,188,205,63,91,204,90,96,177,157,170,161,82,12,246,23,236,123,118,45,216,80,175,214,234,231,232,174,233,117,215,245,235,169,81,89,176};
 //unsigned char F[16]; //={131, 94, 131, 129, 131, 84, 131, 140, 131, 139, 131, 95, 131, 67, 131, 96};
 
 
@@ -973,19 +877,7 @@ FILE *fp,*fq;
   cout << t << endl;
 
   
-  /*
-  for(i=0;i<16;i++)
-    printf("%s\n",str);
-  printf("\n");
-    */
-  /*
-  for(i=0;i<16;i++)
-    cout << to_ZZ(c1.m[i]) << " ";
-  printf("\n");
-  for(i=0;i<16;i++)
-    cout << to_ZZ(c2.m[i]) << " ";
-  printf("\n");
-   */
+
   hasha(t);
   fp=fopen("seed.key","wb");
   fwrite(c1.dd,1,16,fp);
@@ -995,88 +887,52 @@ FILE *fp,*fq;
   fwrite(c2.dd,1,16,fp);
   cout << "共有鍵seed.keyが生成されました。" << endl;
   fclose(fp);
-/*
-  scanf("%s",&str);
-  hash(str);
-    for(i=0;i<16;i++)
-    cout << to_ZZ(c1.m[i]) << " ";
-  printf("\n");
-  for(i=0;i<16;i++)
-    cout << to_ZZ(c2.m[i]) << " ";
-  printf("\n");
-  */
+
 }
 
 
 void ecdh(){
-  ZZ ax,ay,az,b,cx,cy,cz,bf[32];
+  ZZ ax,ay,az,b,cx,cy,cz,bf[32],I,key;
   FILE *fp,*fq;
- unsigned char buf[32],buff[4],str[64],tt[256];
-  int i,j,nn,I[64];
+ unsigned char buf[32],buff[4],str[32*3],tt[256];
+  int i,j,nn,II[32*3];
+  ten X;
   
   fp=fopen("key.bin","rb");
+  fread(buf,1,32,fp);
+  fclose(fp);
+  init_curve(256);
+  mktbl3(CRV.G.x,CRV.G.y,CRV.G.z);
   if(fp==NULL){
     cout << "鍵ファイルが見つかりません。" << endl;
     exit(1);
   }
-
-for(i=0;i<256;i++)
-tt[i]=0;
-
-  /*  
-//  fq=fopen("P.key","rb");
-  fread(buf,1,32,fp);
-  scanf("%s",&tt);
-  hash(tt);
-  for(i=0;i<16;i++){
-    if(buf[i]!=c1.m[i] || buf[i+16]!=c2.m[i]){
-      cout << to_ZZ(buf[i]) << " " << to_ZZ(c1.m[i]) << " " << to_ZZ(buf[i+16]) << " " << to_ZZ(c2.m[i]) << endl;
-    }
-  }
-  */
-//  exit(1);
-/*
-  while(fgets(buff,4,fq)!=NULL)
-    puts(buff);
-  */
-  for(i=0;i<32;i++)
-    b=(b<<8)^buf[i];
-    nn=256;
-/*
-  if(nn!=buff){
-    printf("曲線のタイプが違います\n");
-    exit(1);
-  }
-  */
-//  cin >> b;
-   cin >> ax;
-     //=to_ZZ("2219846464056611966191924951652906168285489775925183197306780311505930448264");
-   cin >> ay;
-     //=to_ZZ("73592630880574001550885545973213795954087806561572906754445247669327114765174");
-   cin >> az;
-     //=to_ZZ("1");
-  init_curve(nn);
-  mktbl3(ax,ay,az);
-  elp3(b);
-  cx=Pub_key.x;
-  cy=Pub_key.y;
-  cz=Pub_key.z;
-  cout << "ecdh" << endl;
-//  cout << cx << endl;
-//  cout << cy << endl;
-//  cout << cz << endl;
+  I=key=0;
   for(i=0;i<32;i++){
-    bf[i]=cx%256;
-    cx=(cx>>8);
-    conv(I[i],bf[i]);
+    I=buf[i];
+    key^=I<<(i*8);
+  }
+  elp3(key);
+  X=P;
+  
+
+  for(i=0;i<32;i++){
+    bf[i]=X.x%256;
+    X.x=(X.x>>8);
+    conv(II[i],bf[i]);
   }
   for(i=0;i<32;i++){
-    bf[i]=cy%256;
-    cy=(cy>>8);
-    conv(I[i+32],bf[i]);
+    bf[i]=X.y%256;
+    X.y=(X.y>>8);
+    conv(II[i+32],bf[i]);
   }
-  for(i=0;i<64;i++){
-    str[i]=I[i];
+  for(i=0;i<32;i++){
+    bf[i]=X.z%256;
+    X.z=(X.z>>8);
+    conv(II[i+64],bf[i]);
+  }
+  for(i=0;i<32*3;i++){
+    str[i]=II[i];
   //  cout << to_ZZ(str[i]);
   }
   cout << "認証パスワードを設定します\n";
@@ -1095,8 +951,8 @@ tt[i]=0;
   
 }
 
-void keygen(){
-  ZZ r;
+void keygen(ZZ r){
+  //  ZZ r;
   FILE *fp;
   unsigned char c[32*3];
   int i;
@@ -1104,7 +960,7 @@ void keygen(){
   fp=fopen("eccpub.key","wb");
   init_curve(256);
   mktbl3(CRV.G.x,CRV.G.y,CRV.G.z);
-  cin >> r;
+  //  cin >> r;
   elp3(r);
   cout << "y=" << Pub_key.y << endl;
 
@@ -1229,14 +1085,9 @@ for(i=0;i<32;i++){
 
 //    cout << "r=" << read_size << endl;
   jadd(X.x,CRV.G.x,X.y,CRV.G.y,X.z,CRV.G.z,CRV.p);
-//  if(read_size==31)
-//  cout << salt << endl;
+
   salt^=P.y; //%(256*read_size);
-//cout << salt << endl;
-  //  if(read_size==32)
-//  cout << salt << endl;
-//  if(read_size<32)
-//    cout << "sma=" << salt << endl;
+
   X.x=P.x;
   X.y=P.y;
   X.z=P.z;
@@ -1265,20 +1116,6 @@ j=0;
 }
 
 
-void mykey(ZZ key){
-  ZZ salt;
-  init_curve(256);
-  mktbl3(CRV.G.x,CRV.G.y,CRV.G.z);
-  elp3(key);
-//  cin >> salt;
-//  cout << 1 << endl;
-  cout << Pub_key.x << endl;
-  cout << Pub_key.y << endl;
-  cout << Pub_key.z << endl;
-//  cout << salt << endl;
-//  printf("%s\n",u);
-  
-}
 
 
 void dec(char *argv[],int nn){
@@ -1369,7 +1206,7 @@ a=salt;
 
   j=0;
   for(i=0;i<read_size;i++){
-    m[i]=I[i];
+    m[i]=(unsigned char)I[i];
     //    j++;
   }
 
@@ -1592,7 +1429,7 @@ int ecc(int argc,char *argv[]){
   }
   
   if(!strcmp(argv[2],"0")){
-    mykey(salt);
+    keygen(salt);
 	exit(0);
   }
   if(!strcmp(argv[2],"3")){
@@ -1611,53 +1448,31 @@ int ecc(int argc,char *argv[]){
     cout << "存在しないモードです。" << endl;
     exit(1);
   }
-    //    ecdh2();
-
-    //    mv(argv,n);
-  
-  //  exit(1);
-//  if(i==2)
-//    keygen(n);
-//    dec(salt,n,argv);
-
-//  keygen(n);
-//  ecdh();
-  //
-/*
-  Q.x=CRV.G.x;
-  Q.y=CRV.G.y;
-  Q.z=CRV.G.z;
-  jdbl(Q.x,Q.y,Q.z,CRV.p);
-  */
-//  mktbl3(CRV.G.x,CRV.G.y,CRV.G.z);
-//  elp3(to_ZZ("3"));
-//  for(i=0;i<256;i++)
 
 //  ecdh(to_ZZ("12"),to_ZZ("97"),n);
 
   return 0;
 }
-//dec(1234156748901,256)
-//init_curve(256)
-//mktbl3(CRV.G.x,CRV.G.y,CRV.G.z)
-//elp3(CRV.n)
-//test()
-//rd()
+
 
 
 int main(int argc,char *argv[]){
-  ZZ z,r,d,I;
+  ZZ z,r,d,I,salt;
   int i;
   char m[1];
   FILE *fp;
   unsigned char key[32];
   po sig;
+  char file[32];
 
-
-  if(strcmp(argv[1],"k")==0)
-    keygen();
-
-  /*
+  if(strcmp(argv[1],"k")==0){
+    seed();
+    argv[1]="-s";
+    argv[2]=password;
+    salt=sha2(3,argv);
+    keygen(salt);
+  }
+  
   cout << "input mode\n";
   cin >> m;
   if(strcmp(m,"e")==0)
@@ -1669,22 +1484,27 @@ int main(int argc,char *argv[]){
   //  elp3(CRV.n);
   
   //
+  if(strcmp(m,"h")==0){
+    cout << "usage:e file encryption;d file decryption;s generate signature;\n";
+    return 0;
+  }
   if(strcmp(m,"d")==0)
     dec(argv,256);
-  */
-
-  I=0;d=0;
-  fp=fopen("eccsec.key","rb");
-  fread(key,1,32,fp);
-  fclose(fp);
-  for(i=0;i<32;i++){
-    I=key[i];
-  d^= I<<(i*8);
+  
+  if(strcmp(m,"s")==0){
+    I=0;d=0;
+    fp=fopen("eccsec.key","rb");
+    fread(key,1,32,fp);
+    fclose(fp);
+    for(i=0;i<32;i++){
+      I=key[i];
+      d^= I<<(i*8);
+    }
+    cin >> r;
+    z=sha2(argc,argv);
+    sig=ecdsa(r,z,d);
+    vr_ecdsa(sig.x,sig.y,z);
   }
-  cin >> r;
-  z=sha2(argc,argv);
-  sig=ecdsa(r,z,d);
-  vr_ecdsa(sig.x,sig.y,z);
 
 return 0;
 }
