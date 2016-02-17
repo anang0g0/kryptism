@@ -1,5 +1,7 @@
 // ecc.cpp : コンソール アプリケーションのエントリ ポイントを定義します。
-//
+//jdbl,jaddは射影座標です。x=X/Z;y=Y/Z;でaffine座標に変換できます。
+//2016.2.18 ecdsa を追加しました。
+
 
 #include <NTL/ZZ.h>
 #include <stdio.h>
@@ -825,6 +827,132 @@ if(Pub_key.y*Pub_key.y%CRV.p != (Pub_key.x*Pub_key.x*Pub_key.x+CRV.a*Pub_key.x*P
 //unsigned char F[16]; //={131, 94, 131, 129, 131, 84, 131, 140, 131, 139, 131, 95, 131, 67, 131, 96};
 
 
+/*=begin
+ECDSA signature eneration and verification
+To sign a meddahe m, an entry A with domain parameters D=(q,FR,a,b,G,n,h)
+and associated key pair (d,Q) does the following
+
+1. Select a random or pseudorandom integer k, 1<=k<=n-1
+2. Compute kG=(x1,y1) and r=x1 mod n. If r=0 then goto step1.
+3. Compute k^{-1} mod n.
+4. Compute e=sha1(m)
+5. Compute s=k^{-1}(e+dr)mod n. If s=0 then goto step1.
+6. A's signature for the message m is (r,s).
+=end
+*/
+po rs;
+po ecdsa(ZZ k,ZZ e,ZZ d){
+  ZZ r,s;
+
+  cout<< "in_ecdsa\n";
+
+  init_curve(256);
+  mktbl3(CRV.G.x,CRV.G.y,CRV.G.z);
+    if(k<0){
+      cout << "k is obsense in ecdsa\n";
+      exit(1);
+      }
+
+  elp3(k);
+  //#  print "Ex= " , e_x , "\n";
+  r=P.x%CRV.n;
+    cout << r , "\n";
+    k=inv(k,CRV.n);
+    //  #  e=sha(argc,argv);
+      s=(k*(e+d*r))%CRV.n;
+      cout << s << endl;
+      //#  print "k=", k, "\n"
+      //#  print "d=", d, "\n"
+      //#  print "e=", e, "\n"
+      rs.x=s;
+      rs.y=r;
+      
+      return rs;
+
+}
+
+/*
+=begin
+ECDSA signature velification
+1. Verify that r and s are integers in the interval[1,n-1]
+2. Compute e=sha1(m)
+3. Compute w=s^{-1} mod n.
+4. Compute u1=ew mod n and u2=rw mod n.
+5. Compute X=u1G+u2Q. If X=O, then reject the signature. Otherwise, compute
+v=x1 mod n where X=(x1,y1)
+6. Accept the signature if and only if v=r.
+=end
+*/
+void vr_ecdsa(ZZ s,ZZ r,ZZ e){
+  ZZ w,u1,u2,gx,gy,gz,qx,qy,qz,xx,yy,v,zz;
+  FILE *fp;
+  unsigned char key[32*3];
+  ZZ I,px,py,pz;
+  int i;
+
+  cout << "in_vr_ecdsa\n";
+  fp=fopen("eccpub.key","rb");
+  fread(key,1,sizeof(key),fp);
+  fclose(fp);
+
+  I=0;px=py=pz=0;
+  for(i=0;i<32;i++){
+    I=key[i];
+    px^= I<<(i*8);
+  }
+  for(i=0;i<32;i++){
+    I=key[i+32];
+    py^= I<<(i*8);    
+  }
+  for(i=0;i<32;i++){
+    I=key[i+64];
+    pz^= I<<(i*8);
+  }
+
+
+  //  #  e=sha(argc,argv);
+    w=inv(s,CRV.n);
+    u1=e*w%CRV.n;
+    //  #  cout << "u1=" << u1 << endl;
+    u2=r*w%CRV.n;
+
+    cout << "Gen_key\n";
+    mktbl3(CRV.G.x,CRV.G.y,CRV.G.z);
+    elp3(u1); // #G=
+    gx=P.x;
+    gy=P.y;
+    gz=P.z;
+
+    mktbl3(px,py,pz);
+    elp3(u2);// #Q=
+    qx=P.x;
+    qy=P.y;
+    qz=P.z;
+
+    if(gx==qx && gy==qy){
+      cout << "equal point\n";
+      exit(1);
+    }
+
+
+    if(gx!=qx){
+      jadd(gx,qx,gy,qy,gz,qz,CRV.p); // #X=
+      xx=P.x;
+      yy=P.y;
+      zz=P.z;
+      }
+    v=xx%CRV.n;
+    cout << "r is " , r , "\n";
+    cout << "v is " , v , "\n";
+
+  if(v==r)
+    cout << "That's true!\n";
+
+  if(v!=r)
+    cout << "baka\n";
+ 
+}
+
 
 
 
@@ -1518,13 +1646,18 @@ int ecc(int argc,char *argv[]){
 
 
 int main(int argc,char *argv[]){
-  ZZ z;
+  ZZ z,r,d,I;
   int i;
   char m[1];
+  FILE *fp;
+  unsigned char key[32];
+  po sig;
+
 
   if(strcmp(argv[1],"k")==0)
     keygen();
 
+  /*
   cout << "input mode\n";
   cin >> m;
   if(strcmp(m,"e")==0)
@@ -1538,6 +1671,20 @@ int main(int argc,char *argv[]){
   //
   if(strcmp(m,"d")==0)
     dec(argv,256);
+  */
+
+  I=0;d=0;
+  fp=fopen("eccsec.key","rb");
+  fread(key,1,32,fp);
+  fclose(fp);
+  for(i=0;i<32;i++){
+    I=key[i];
+  d^= I<<(i*8);
+  }
+  cin >> r;
+  z=sha2(argc,argv);
+  sig=ecdsa(r,z,d);
+  vr_ecdsa(sig.x,sig.y,z);
 
 return 0;
 }
