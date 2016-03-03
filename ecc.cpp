@@ -520,8 +520,12 @@ while(s<t){
 }
 
 
-void jadd(ZZ x1,ZZ x2,ZZ y1,ZZ y2,ZZ z1,ZZ z2,ZZ mod){
+void jadd(ten G1,ten G2){
 ZZ u1,u2,s1,s2,h,r,rev,reb,re6;
+ ZZ x1,x2,y1,y2,z1,z2,mod;
+
+ x1=G1.x; x2=G2.x; y1=G1.y; y2=G2.y; z1=G1.z; z2=G2.z;
+ mod=CRV.p;
 
 if(x1==x2 && y1==y2 && z1==z2){
     cout <<"infinity devide1\n";
@@ -630,6 +634,36 @@ if(yy==0){
 }
 
 
+ten elp(ZZ k,ten Z){
+  ten E,F;
+  int flg=0,l=0,i;
+
+  if(k==0)
+    return CRV.G;
+
+  E=Z;
+  
+  while(k%2==0){
+    jdbl(E);
+    E=Q;
+    k=(k>>1);
+  }
+
+  F=E;
+  while(k>0){
+    k=(k>>1);
+    jdbl(F);
+    F=Q;
+    if(k%2==1){
+      jadd(E,F);
+      E=P;
+    }
+  }
+
+    return E;
+}
+
+
 //Compute Q=mG
 void elp3(ZZ k){
 int ki[256];
@@ -696,7 +730,7 @@ if(k>0){
   //       cout << "doko2\n";
         if(ll[ki[i]].y*ll[ki[i]].y%CRV.p==(ll[ki[i]].x*ll[ki[i]].x*ll[ki[i]].x+CRV.a*ll[ki[i]].x*(ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z)+CRV.b*(ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z*ll[ki[i]].z))%CRV.p){
     //       cout << "doko3\n";
-          jadd(Pub_key.x,ll[ki[i]].x,Pub_key.y,ll[ki[i]].y,Pub_key.z,ll[ki[i]].z,CRV.p);
+          jadd(Pub_key,ll[ki[i]]);
         Pub_key.x=P.x;
         Pub_key.y=P.y;
         Pub_key.z=P.z;
@@ -754,17 +788,19 @@ and associated key pair (d,Q) does the following
 po rs;
 po ecdsa(ZZ k,ZZ e,ZZ d){
   ZZ r,s;
+  ten U;
 
   cout<< "in_ecdsa\n";
 
   init_curve(256);
-  mktbl3(CRV.G);
+    mktbl3(CRV.G);
     if(k<0){
       cout << "k is obsense in ecdsa\n";
       exit(1);
       }
 
-  elp3(k);
+      elp3(k);
+    //    U=elp(k,CRV.G);
   //#  print "Ex= " , e_x , "\n";
   r=P.x%CRV.n;
     cout << r , "\n";
@@ -800,7 +836,7 @@ void vr_ecdsa(ZZ s,ZZ r,ZZ e){
   unsigned char key[32*3];
   ZZ I,px,py,pz;
   int i;
-  ten T;
+  ten T,G1,G2,R;
 
   cout << "in_vr_ecdsa\n";
   fp=fopen("eccpub.key","rb");
@@ -831,26 +867,24 @@ void vr_ecdsa(ZZ s,ZZ r,ZZ e){
     u2=r*w%CRV.n;
 
     cout << "Gen_key\n";
-    mktbl3(CRV.G);
-    elp3(u1); // #G=
-    gx=P.x;
-    gy=P.y;
-    gz=P.z;
+        mktbl3(CRV.G);
+        elp3(u1); // #G=
+	//R=elp(u1,CRV.G);
+    G1=P;
 
-    mktbl3(T);
-    elp3(u2);// #Q=
-    qx=P.x;
-    qy=P.y;
-    qz=P.z;
+        mktbl3(T);
+        elp3(u2);// #Q=
+	//R=elp(u2,T);
+    G2=P;
 
-    if(gx==qx && gy==qy){
+    if(G1.x==G2.x && G1.y==G2.y){
       cout << "equal point\n";
       exit(1);
     }
 
 
-    if(gx!=qx){
-      jadd(gx,qx,gy,qy,gz,qz,CRV.p); // #X=
+    if(G1.x!=G2.x){
+      jadd(G1,G2); // #X=
       xx=P.x;
       yy=P.y;
       zz=P.z;
@@ -1012,20 +1046,17 @@ unsigned char* to;
  ten X;
   
  init_curve(nn);
- // salt=sha2(2,argv);
-   cin >> salt;
-  //  salt=SecureRandom.random_number(2**(32*8));
-  //cout << "P.x=" << P.x << "\n";
-//cout << "P.y=" << P.y << "\n";
-//cout << "P.z=" << P.z << "\n";
+  salt=sha2(2,argv);
+  //  cin >> salt;
   
 
   fp = fopen(argv[1],"rb");
   fq = fopen(argv[2],"wb");
 
-mktbl3(CRV.G);
-elp3(salt);
- cout << "yr=" << Pub_key.y << endl;
+  //mktbl3(CRV.G);
+  //elp3(salt);
+  Pub_key=elp(salt,CRV.G);
+ cout << "y=" << Pub_key.y << endl;
 
  for(i=0;i<32;i++){
    key[i]=Pub_key.x%256;
@@ -1046,9 +1077,6 @@ elp3(salt);
  fread(key,1,sizeof(key),fr);
  fclose(fr);
 
-  // cin >> Pub_key.x;
-  // cin >> Pub_key.y;
-  // cin >> Pub_key.z;
 
   Pub_key.x=0;
   Pub_key.y=0;
@@ -1069,56 +1097,54 @@ elp3(salt);
   
   mktbl3(Pub_key);
   elp3(salt);
-
+  
   X.x=Pub_key.x;
   X.y=Pub_key.y;
   X.z=Pub_key.z;
+  
+  //  X=elp(salt,Pub_key);
   cout << "y=" << X.y << endl;
 
-for(i=0;i<32;i++){
-  I[i]=0;buf[i]=0;ai[i]=0;
-  }
+  memset(I,0,sizeof(I));
+  memset(buf,0,sizeof(buf));
+  memset(ai,0,sizeof(ai));
+  
+//for(i=0;i<32;i++){
+//  I[i]=0;buf[i]=0;ai[i]=0;
+//  }
 
 
  while((read_size=fread(buff,1,32,fp))>0){
-  for(i=0;i<read_size;i++)
-      ai[i]=buff[i];
+   for(i=0;i<read_size;i++)
+     ai[i]=buff[i];
+   
+   salt=0;
+   for(i=0;i<read_size;i++){
+     II=to_ZZ(ai[i]);
+     salt^= II<<(i*8);
+   }
+   jadd(X,CRV.G);//ˆê‚Â‚Ã‚Â‘«‚·
 
-  c=0;
-  salt=0;
-  for(i=0;i<read_size;i++){
-    II=to_ZZ(ai[i]);
-    salt^= II<<(i*8);
-  }
-  //  salt^=to_ZZ(ai[read_size-1]);
-  c=0;
+   salt^=P.y;
+   
+   X.x=P.x;
+   X.y=P.y;
+   X.z=P.z;
+   
 
-//    cout << "r=" << read_size << endl;
-  jadd(X.x,CRV.G.x,X.y,CRV.G.y,X.z,CRV.G.z,CRV.p);
-
-  salt^=P.y; //%(256*read_size);
-
-  X.x=P.x;
-  X.y=P.y;
-  X.z=P.z;
-  i=read_size-1;
-j=0;
-
-
-
- for(i=0;i<32;i++){
-    //  cout << i << endl;
-    buf[i]=salt%256;
-    conv(I[i],buf[i]);
-    salt=(salt>>8);
-  }
-
+   for(i=0;i<32;i++){
+     //  cout << i << endl;
+     buf[i]=salt%256;
+     conv(I[i],buf[i]);
+     salt=(salt>>8);
+   }
+   
     for(i=0;i<32;i++)
       m[i]=(unsigned char)I[i];
-
-//  if(read_size==32){
+    
+    
     fwrite(m,1,32,fq);
-}
+ }
 
   fclose(fp);
   fclose(fq);
@@ -1171,8 +1197,11 @@ fq = fopen(argv[1],"rb");
  II=key[i+64];
  R.z^=II<<(i*8);
  }
-  mktbl3(R);
-  elp3(r);
+
+   mktbl3(R);
+   elp3(r);
+   // Pub_key=elp(r,R);
+
   //cout << "dcPubkey.x=" << Pub_key.x << "\n";
   cout << "dcPubkey_y=" << Pub_key.y << "\n";
   //cout << "dcPubkey.z=" << Pub_key.z << "\n";
@@ -1197,7 +1226,7 @@ while(read_size = fread(buff,1,32,fq)){
   }
 
 
-  jadd(Pub_key.x,CRV.G.x,Pub_key.y,CRV.G.y,Pub_key.z,CRV.G.z,CRV.p);
+  jadd(Pub_key,CRV.G);
   salt^=P.y; //%(256*read_size));
   //cout << salt << endl;
 //  exit(1);
@@ -1231,6 +1260,17 @@ a=salt;
 }
 
 
+void nizk(){
+  ZZ r,c,x,b;
+
+    mktbl3(CRV.G);
+    elp3(r);
+    //elp(r,CRV.G);
+  cout << "input challenge\n";
+  cin >> c;
+  b=c-r*x;
+  
+}
 
 /*
 def otp(x,nn)
@@ -1380,7 +1420,7 @@ elp3(r);
 gr.x=Pub_key.x;
 gr.y=Pub_key.y;
 gr.z=Pub_key.z;
-  jadd(gr.x,c.x,gr.y,c.y,gr.z,c.z,CRV.p);
+  jadd(gr,c);
 Gen_key.x=P.x;
 Gen_key.y=P.y;
 Gen_key.z=P.z;
@@ -1474,6 +1514,9 @@ int main(int argc,char *argv[]){
   unsigned char key[32];
   po sig;
   char file[32];
+  ten T;
+
+
 
   if(strcmp(argv[1],"k")==0){
     seed();
