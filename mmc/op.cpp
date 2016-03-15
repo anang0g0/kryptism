@@ -11,8 +11,11 @@
 #define T K/2
 
 
+
+unsigned char mat[K][N]={0};
 unsigned char c[]={0};
 unsigned char mat[K][M]={0};
+
 
 
 typedef struct {
@@ -124,6 +127,7 @@ return a;
 }
 
 
+<<<<<<< HEAD
 vec Setvec(int p){
 int i,a,b,n=0;
 vec v={0};
@@ -137,6 +141,17 @@ n++;
 
 for(i=0;i<a+1;i++)
   v.x[a-i]=c[i];
+=======
+vec Setvec(void){
+  int i,a,b,n;
+  vec v={0};
+
+
+  a=deg(c);
+
+  for(i=0;i<a+1;i++)
+    v.x[a-i]=c[i];
+>>>>>>> 19a429fc6ab186a3a37215eddfed9359d1214e43
 
   return v;
 }
@@ -267,11 +282,18 @@ OP omod(OP f,OP g){
   printpol(o2v(f));
   printpol(o2v(g));
   if(deg(o2v(f))==0 || deg(o2v(g))==0){
+<<<<<<< HEAD
     printf("baka^\n");
     exit(1);
   }
 //exit(1);  
 
+=======
+    printf("baka\n");
+    exit(1);
+  }
+    
+>>>>>>> 19a429fc6ab186a3a37215eddfed9359d1214e43
   a=LT(f);
   b=LT(g);
   n=a.n-b.n;
@@ -456,6 +478,7 @@ OP ogcd(OP f,OP g){
   return h;
 }
 
+<<<<<<< HEAD
 
 OP bibun(vec a){
  OP w[DEG]={0},l={0},t={0};
@@ -648,7 +671,119 @@ void det(unsigned char g[K+1]){
   
   //    exit(1);
 }
+=======
 
+OP lbib(vec a){
+OP w[DEG]={0},l={0},t={0};
+int i,j,k,n;
+vec tmp={0};
+
+n=deg(a);
+for(i=0;i<n+1;i++){
+w[i].t[0].a=a.x[i];
+w[i].t[0].n=0;
+w[i].t[1].a=1;
+w[i].t[1].n=1;
+}
+
+tmp.x[0]=1;
+for(i=0;i<n+1;i++){
+t=v2o(tmp);
+for(j=0;j<n+1;j++){
+if(i!=j)
+t=omul(t,w[j]);
+}
+l=oadd(l,t);
+}
+
+
+return l;
+}
+
+
+vec chen(OP f){
+  vec e={0};
+  int i,count=0,n;
+  unsigned char x=0,y[256]={0},z;
+
+//  e=o2v(f);
+n=deg(o2v(f));
+  for(x=0;x<M;x++){
+    z=0;
+    for(i=0;i<n+1;i++){
+	z^=gf[mlt(mltn(f.t[i].n,fg[x]),fg[f.t[i].a])];
+    }
+    if(z==0)
+      e.x[count++]=x;    
+  }
+
+return e;
+}
+
+
+OP decode(OP f,OP s){
+int i,j,k;
+OP r,h,w,e={0};
+oterm t1,t2;
+vec x;
+
+    r=vx(f,s);
+    h=ogcd(f,s);
+    x=chen(r);
+    w=lbib(x);
+
+printf("@@@@@@@@@\n");
+
+t1=LT(r);
+t2.a=t1.a;
+t2.n=0;
+w=oterml(w,t2);
+printpol(o2v(w));
+printpol(o2v(h));
+for(i=0;i<deg(x)+1;i++){
+e.t[i].a=gf[mlt(fg[trace(h,x.x[i])],oinv(trace(w,x.x[i])))];
+e.t[i].n=x.x[i];
+}
+
+
+return e;
+}
+
+
+OP setpol(unsigned char f[],int n){
+OP g;
+vec a;
+
+  memcpy(c,f,n);
+  a=Setvec();
+  g=v2o(a);
+
+
+return g;
+}
+
+
+int main(){
+  vec a,b,x;
+  int n,i,k=6;
+  unsigned char s[6]={4,12,7,8,11,13};
+  unsigned char g[7]={1,0,0,0,1,0,1};
+  OP f,g1,h,r,t,w,e;
+  oterm t1,t2;
+
+
+  g1=setpol(s,6);
+  f=setpol(g,7);
+
+  printpol(o2v(g1));
+  printpol(o2v(f));
+
+>>>>>>> 19a429fc6ab186a3a37215eddfed9359d1214e43
+
+  e=decode(f,g1);
+
+  for(i=0;i<deg(o2v(e))+1;i++)
+    printf("e=%d %d\n",e.t[i].a,e.t[i].n);
 
 int main(void){
   int i,j,k,l,ll,oo,lll=0,aa=0;
@@ -699,3 +834,7 @@ int main(void){
 
   return 0;
 }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 19a429fc6ab186a3a37215eddfed9359d1214e43
