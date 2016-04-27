@@ -1,0 +1,542 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head><title>Braid Messanger</title></head>
+<style type="text/css">
+.wd{
+	white-space:pre-wrap;
+	word-break:break-all;
+}
+</style>
+<script type="text/javascript" src="./sha.js"></script>
+
+<SCRIPT language=JavaScript src="MD5.files/utf.js"></SCRIPT>
+<SCRIPT language=JavaScript src="MD5.files/md5.js"></SCRIPT>
+
+<body bgcolor="#EEEEEE" link="#99CCFF" vlink="#99CCFF" style="background-image: url('IMG_0355.JPG'); background-attachment: fixed">
+<div align="center">
+<br><br>ƒuƒŒƒCƒhƒƒbƒZƒ“ƒWƒƒ[<br><br>
+<hr noshade size="1" width="80%">
+
+
+<script type="text/javascript">
+var x1=new Array();
+var x2=new Array();
+var x3=new Array();
+//var a=[ 148, 246, 52, 251, 16, 194, 72, 150, 249, 23, 90, 107, 151, 42, 154, 124, 48, 58, 30, 24, 42, 33, 38, 10, 115, 41, 164, 16, 33, 32, 252, 143, 86, 175, 8, 132, 103, 231, 95, 190, 61, 29, 215, 75, 251, 248, 72, 48, 224, 200, 147, 93, 112, 25, 227, 223, 206, 137, 51, 88, 109, 214, 17, 172];
+
+var r=new Array();
+var str;
+var moji="'!#%&()*+ -,./0123456789:;<=>?ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|} ~¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝ@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«¬¸¹º»¼½¾¿ÈÉÊËÌÍÎÚÛÜÝÞßàáâãäåæçèðñòóôõö÷ü‚O‚P‚Q‚R‚S‚T‚U‚V‚W‚X‚`‚a‚b‚c‚d‚e‚f‚g‚h‚i‚j‚k‚l‚m‚n‚o‚p‚q‚r‚s‚t‚u‚v‚w‚x‚y‚‚‚‚ƒ‚„‚…‚†‚‡‚ˆ‚‰‚Š‚‹‚Œ‚‚Ž‚‚‚‘‚’‚“‚”‚•‚–‚—‚˜‚™‚š‚Ÿ‚ ‚¡‚¢‚£‚¤‚¥‚¦‚§‚¨‚©‚ª‚«‚¬‚­‚®‚¯‚°‚±‚²‚³‚´‚µ‚¶‚·‚¸‚¹‚º‚»‚¼‚½‚¾‚¿‚À‚Á‚Â‚Ã‚Ä‚Å‚Æ‚Ç‚È‚É‚Ê‚Ë‚Ì‚Í‚Î‚Ï‚Ð‚Ñ‚Ò‚Ó‚Ô‚Õ‚Ö‚×‚Ø‚Ù‚Ú‚Û‚Ü‚Ý‚Þ‚ß‚à‚á‚â‚ã‚ä‚å‚æ‚ç‚è‚é‚ê‚ë‚ì‚í‚î‚ï‚ð‚ñƒ@ƒAƒBƒCƒDƒEƒFƒGƒHƒIƒJƒKƒLƒMƒNƒOƒPƒQƒRƒSƒTƒUƒVƒWƒXƒYƒZƒ[ƒ\ƒ]ƒ^ƒ_ƒ`ƒaƒbƒcƒdƒeƒfƒgƒhƒiƒjƒkƒlƒmƒnƒoƒpƒqƒrƒsƒtƒuƒvƒwƒxƒyƒzƒ{ƒ|ƒ}ƒ~ƒ€ƒƒ‚ƒƒƒ„ƒ…ƒ†ƒ‡ƒˆƒ‰ƒŠƒ‹ƒŒƒƒŽƒƒƒ‘ƒ’ƒ“ƒ”ƒ•ƒ–ƒŸƒ ƒ¡ƒ¢ƒ£ƒ¤ƒ¥ƒ¦ƒ§ƒ¨ƒ©ƒªƒ«ƒ¬ƒ­ƒ®ƒ¯ƒ°ƒ±ƒ²ƒ³ƒ´ƒµƒ¶ƒ¿ƒÀƒÁƒÂƒÃƒÄƒÅƒÆƒÇƒÈƒÉƒÊƒËƒÌƒÍƒÎƒÏƒÐƒÑƒÒƒÓƒÔƒÕƒÖ„@„A„B„C„D„E„F„G„H„I„J„K„L„M„N„O„P„Q„R„S„T„U„V„W„X„Y„Z„[„\„]„^„_„`„p„q„r„s„t„u„v„w„x„y„z„{„|„}„~„€„„‚„ƒ„„„…„†„‡„ˆ„‰„Š„‹„Œ„„Ž„„„‘„Ÿ„ „¡„¢„£„¤„¥„¦„§„¨„©„ª„«„¬„­„®„¯„°„±„²„³„´„µ„¶„·„¸„¹„º„»„¼„½„¾‡@‡A‡B‡C‡D‡E‡F‡G‡H‡I‡J‡K‡L‡M‡N‡O‡P‡Q‡R‡S‡T‡U‡V‡W‡X‡Y‡Z‡[‡\‡]‡_‡`‡a‡b‡c‡d‡e‡f‡g‡h‡i‡j‡k‡l‡m‡n‡o‡p‡q‡r‡s‡t‡u‡~‡€‡‡‚‡ƒ‡„‡…‡†‡‡‡ˆ‡‰ˆ ˆ¡ˆ¢ˆ£ˆ¤ˆ¥ˆ¦ˆ§ˆ¨ˆ©ˆªˆ«ˆ¬ˆ­ˆ®ˆ¯ˆ°ˆ±ˆ²ˆ³ˆ´ˆµˆ¶ˆ·ˆ¸ˆ¹ˆºˆ»ˆ¼ˆ½ˆ¾ˆ¿ˆÀˆÁˆÂˆÃˆÄˆÅˆÆˆÇˆÈˆÉˆÊˆËˆÌˆÍˆÎˆÏˆÐˆÑˆÒˆÓˆÔˆÕˆÖˆ×ˆØˆÙˆÚˆÛˆÜˆÝˆÞˆßˆàˆáˆâˆãˆäˆåˆæˆçˆèˆéˆêˆëˆìˆíˆîˆïˆðˆñˆòˆóˆôˆõˆöˆ÷ˆøˆùˆúˆûˆü‡Š‡‹‡Œ‰@‰A‰B‰C‰D‰E‰F‰G‰H‰I‰J‰K‰L‰M‰N‰O‰P‰Q‰R‰S‰T‰U‰V‰W‰X‰Y‰Z‰[‰\‰]‰^‰_‰`‰a‰b‰c‰d‰e‰f‰g‰h‰i‰j‰k‰l‰m‰n‰o‰p‰q‰r‰s‰t‰u‰v‰w‰x‰y‰z‰{‰|‰}‰~‰€‰‰‚‰ƒ‰„‰…‰†‰‡‰ˆ‰‰‰Š‰‹‰Œ‰‰Ž‰‰‰‘‰’‰“‰”‰•‰–‰—‰˜‰™‰š‰›‰œ‰‰ž‰Ÿ‰ ‰¡‰¢‰£‰¤‰¥‰¦‰§‰¨‰©‰ª‰«‰¬‰­‰®‰¯‰°‰±‰²‰³‰´‰µ‰¶‰·‰¸‰¹‰º‰»‰¼‰½‰¾‰¿‰À‰Á‰Â‰Ã‰Ä‰Å‰Æ‰Ç‰È‰É‰Ê‰Ë‰Ì‰Í‰Î‰Ï‰Ð‰Ñ‰Ò‰Ó‰Ô‰Õ‰Ö‰×‰Ø‰Ù‰Ú‰Û‰Ü‰Ý‰Þ‰ß‰à‰á‰â‰ã‰ä‰å‰æ‰ç‰è‰é‰ê‰ë‰ì‰í‰î‰ï‰ð‰ñ‰ò‰ó‰ô‰õ‰ö‰÷‰ø‰ù‰ú‰û‰ü‡‡Ž‡Š@ŠAŠBŠCŠDŠEŠFŠGŠHŠIŠJŠKŠLŠMŠNŠOŠPŠQŠRŠSŠTŠUŠVŠWŠXŠYŠZŠ[Š\Š]Š^Š_Š`ŠaŠbŠcŠdŠeŠfŠgŠhŠiŠjŠkŠlŠmŠnŠoŠpŠqŠrŠsŠtŠuŠvŠwŠxŠyŠzŠ{Š|Š}Š~ˆŸŠ€ŠŠ‚ŠƒŠ„Š…Š†Š‡ŠˆŠ‰ŠŠŠ‹ŠŒŠŠŽŠŠŠ‘Š’Š“Š”Š•Š–Š—Š˜Š™ŠšŠ›ŠœŠŠžŠŸŠ Š¡Š¢Š£Š¤Š¥Š¦Š§Š¨Š©ŠªŠ«Š¬Š­Š®Š¯Š°Š±Š²Š³Š´ŠµŠ¶Š·Š¸Š¹ŠºŠ»Š¼Š½Š¾Š¿ŠÀŠÁŠÂŠÃŠÄŠÅŠÆŠÇŠÈŠÉŠÊŠËŠÌŠÍŠÎŠÏŠÐŠÑŠÒŠÓŠÔŠÕŠÖŠ×ŠØŠÙŠÚŠÛŠÜŠÝŠÞŠßŠàŠáŠâŠãŠäŠåŠæŠçŠèŠéŠêŠëŠìŠíŠîŠïŠðŠñŠòŠóŠôŠõŠöŠ÷ŠøŠùŠúŠûŠü‡“‡”‡˜‹@‹A‹B‹C‹D‹E‹F‹G‹H‹I‹J‹K‹L‹M‹N‹O‹P‹Q‹R‹S‹T‹U‹V‹W‹X‹Y‹Z‹[‹\‹]‹^‹_‹`‹a‹b‹c‹d‹e‹f‹g‹h‹i‹j‹k‹l‹m‹n‹o‹p‹q‹r‹s‹t‹u‹v‹w‹x‹y‹z‹{‹|‹}‹~‡™‹€‹‹‚‹ƒ‹„‹…‹†‹‡‹ˆ‹‰‹Š‹‹‹Œ‹‹Ž‹‹‹‘‹’‹“‹”‹•‹–‹—‹˜‹™‹š‹›‹œ‹‹ž‹Ÿ‹ ‹¡‹¢‹£‹¤‹¥‹¦‹§‹¨‹©‹ª‹«‹¬‹­‹®‹¯‹°‹±‹²‹³‹´‹µ‹¶‹·‹¸‹¹‹º‹»‹¼‹½‹¾‹¿‹À‹Á‹Â‹Ã‹Ä‹Å‹Æ‹Ç‹È‹É‹Ê‹Ë‹Ì‹Í‹Î‹Ï‹Ð‹Ñ‹Ò‹Ó‹Ô‹Õ‹Ö‹×‹Ø‹Ù‹Ú‹Û‹Ü‹Ý‹Þ‹ß‹à‹á‹â‹ã‹ä‹å‹æ‹ç‹è‹é‹ê‹ë‹ì‹í‹î‹ï‹ð‹ñ‹ò‹ó‹ô‹õ‹ö‹÷‹ø‹ù‹ú‹û‹üŒ@ŒAŒBŒCŒDŒEŒFŒGŒHŒIŒJŒKŒLŒMŒNŒOŒPŒQŒRŒSŒTŒUŒVŒWŒXŒYŒZŒ[Œ\Œ]Œ^Œ_Œ`ŒaŒbŒcŒdŒeŒfŒgŒhŒiŒjŒkŒlŒmŒnŒoŒpŒqŒrŒsŒtŒuŒvŒwŒxŒyŒzŒ{Œ|Œ}Œ~Œ€ŒŒ‚ŒƒŒ„Œ…Œ†Œ‡ŒˆŒ‰ŒŠŒ‹ŒŒŒŒŽŒŒŒ‘Œ’Œ“Œ”Œ•Œ–Œ—Œ˜Œ™ŒšŒ›ŒœŒŒžŒŸŒ Œ¡Œ¢Œ£Œ¤Œ¥Œ¦Œ§Œ¨Œ©ŒªŒ«Œ¬Œ­Œ®Œ¯Œ°Œ±Œ²Œ³Œ´ŒµŒ¶Œ·Œ¸Œ¹ŒºŒ»Œ¼Œ½Œ¾Œ¿ŒÀŒÁŒÂŒÃŒÄŒÅŒÆŒÇŒÈŒÉŒÊŒËŒÌŒÍŒÎŒÏŒÐŒÑŒÒŒÓŒÔŒÕŒÖŒ×ŒØŒÙŒÚŒÛŒÜŒÝŒÞŒßŒàŒáŒâŒãŒäŒåŒæŒçŒèŒéŒêŒëŒìŒíŒîŒïŒðŒñŒòŒóŒôŒõŒöŒ÷ŒøŒùŒúŒûŒü@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüŽ@ŽAŽBŽCŽDŽEŽFŽGŽHŽIŽJŽKŽLŽMŽNŽOŽPŽQŽRŽSŽTŽUŽVŽWŽXŽYŽZŽ[Ž\Ž]Ž^Ž_Ž`ŽaŽbŽcŽdŽeŽfŽgŽhŽiŽjŽkŽlŽmŽnŽoŽpŽqŽrŽsŽtŽuŽvŽwŽxŽyŽzŽ{Ž|Ž}Ž~Ž€ŽŽ‚ŽƒŽ„Ž…Ž†Ž‡ŽˆŽ‰ŽŠŽ‹ŽŒŽŽŽŽŽŽ‘Ž’Ž“Ž”Ž•Ž–Ž—Ž˜Ž™ŽšŽ›ŽœŽŽžŽŸŽ Ž¡Ž¢Ž£Ž¤Ž¥Ž¦Ž§Ž¨Ž©ŽªŽ«Ž¬Ž­Ž®Ž¯Ž°Ž±Ž²Ž³Ž´ŽµŽ¶Ž·Ž¸Ž¹ŽºŽ»Ž¼Ž½Ž¾Ž¿ŽÀŽÁŽÂŽÃŽÄŽÅŽÆŽÇŽÈŽÉŽÊŽËŽÌŽÍŽÎŽÏŽÐŽÑŽÒŽÓŽÔŽÕŽÖŽ×ŽØŽÙŽÚŽÛŽÜŽÝŽÞŽßŽàŽáŽâŽãŽäŽåŽæŽçŽèŽéŽêŽëŽìŽíŽîŽïŽðŽñŽòŽóŽôŽõŽöŽ÷ŽøŽùŽúŽûŽü@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûü@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûü‘@‘A‘B‘C‘D‘E‘F‘G‘H‘I‘J‘K‘L‘M‘N‘O‘P‘Q‘R‘S‘T‘U‘V‘W‘X‘Y‘Z‘[‘\‘]‘^‘_‘`‘a‘b‘c‘d‘e‘f‘g‘h‘i‘j‘k‘l‘m‘n‘o‘p‘q‘r‘s‘t‘u‘v‘w‘x‘y‘z‘{‘|‘}‘~‘€‘‘‚‘ƒ‘„‘…‘†‘‡‘ˆ‘‰‘Š‘‹‘Œ‘‘Ž‘‘‘‘‘’‘“‘”‘•‘–‘—‘˜‘™‘š‘›‘œ‘‘ž‘Ÿ‘ ‘¡‘¢‘£‘¤‘¥‘¦‘§‘¨‘©‘ª‘«‘¬‘­‘®‘¯‘°‘±‘²‘³‘´‘µ‘¶‘·‘¸‘¹‘º‘»‘¼‘½‘¾‘¿‘À‘Á‘Â‘Ã‘Ä‘Å‘Æ‘Ç‘È‘É‘Ê‘Ë‘Ì‘Í‘Î‘Ï‘Ð‘Ñ‘Ò‘Ó‘Ô‘Õ‘Ö‘×‘Ø‘Ù‘Ú‘Û‘Ü‘Ý‘Þ‘ß‘à‘á‘â‘ã‘ä‘å‘æ‘ç‘è‘é‘ê‘ë‘ì‘í‘î‘ï‘ð‘ñ‘ò‘ó‘ô‘õ‘ö‘÷‘ø‘ù‘ú‘û‘ü’@’A’B’C’D’E’F’G’H’I’J’K’L’M’N’O’P’Q’R’S’T’U’V’W’X’Y’Z’[’\’]’^’_’`’a’b’c’d’e’f’g’h’i’j’k’l’m’n’o’p’q’r’s’t’u’v’w’x’y’z’{’|’}’~’€’’‚’ƒ’„’…’†’‡’ˆ’‰’Š’‹’Œ’’Ž’’’‘’’’“’”’•’–’—’˜’™’š’›’œ’’ž’Ÿ’ ’¡’¢’£’¤’¥’¦’§’¨’©’ª’«’¬’­’®’¯’°’±’²’³’´’µ’¶’·’¸’¹’º’»’¼’½’¾’¿’À’Á’Â’Ã’Ä’Å’Æ’Ç’È’É’Ê’Ë’Ì’Í’Î’Ï’Ð’Ñ’Ò’Ó’Ô’Õ’Ö’×’Ø’Ù’Ú’Û’Ü’Ý’Þ’ß’à’á’â’ã’ä’å’æ’ç’è’é’ê’ë’ì’í’î’ï’ð’ñ’ò’ó’ô’õ’ö’÷’ø’ù’ú’û’ü“@“A“B“C“D“E“F“G“H“I“J“K“L“M“N“O“P“Q“R“S“T“U“V“W“X“Y“Z“[“\“]“^“_“`“a“b“c“d“e“f“g“h“i“j“k“l“m“n“o“p“q“r“s“t“u“v“w“x“y“z“{“|“}“~“€““‚“ƒ“„“…“†“‡“ˆ“‰“Š“‹“Œ““Ž“““‘“’“““”“•“–“—“˜“™“š“›“œ““ž“Ÿ“ “¡“¢“£“¤“¥“¦“§“¨“©“ª“«“¬“­“®“¯“°“±“²“³“´“µ“¶“·“¸“¹“º“»“¼“½“¾“¿“À“Á“Â“Ã“Ä“Å“Æ“Ç“È“É“Ê“Ë“Ì“Í“Î“Ï“Ð“Ñ“Ò“Ó“Ô“Õ“Ö“×“Ø“Ù“Ú“Û“Ü“Ý“Þ“ß“à“á“â“ã“ä“å“æ“ç“è“é“ê“ë“ì“í“î“ï“ð“ñ“ò“ó“ô“õ“ö“÷“ø“ù“ú“û“ü”@”A”B”C”D”E”F”G”H”I”J”K”L”M”N”O”P”Q”R”S”T”U”V”W”X”Y”Z”[”\”]”^”_”`”a”b”c”d”e”f”g”h”i”j”k”l”m”n”o”p”q”r”s”t”u”v”w”x”y”z”{”|”}”~”€””‚”ƒ”„”…”†”‡”ˆ”‰”Š”‹”Œ””Ž”””‘”’”“”””•”–”—”˜”™”š”›”œ””ž”Ÿ” ”¡”¢”£”¤”¥”¦”§”¨”©”ª”«”¬”­”®”¯”°”±”²”³”´”µ”¶”·”¸”¹”º”»”¼”½”¾”¿”À”Á”Â”Ã”Ä”Å”Æ”Ç”È”É”Ê”Ë”Ì”Í”Î”Ï”Ð”Ñ”Ò”Ó”Ô”Õ”Ö”×”Ø”Ù”Ú”Û”Ü”Ý”Þ”ß”à”á”â”ã”ä”å”æ”ç”è”é”ê”ë”ì”í”î”ï”ð”ñ”ò”ó”ô”õ”ö”÷”ø”ù”ú”û”ü•@•A•B•C•D•E•F•G•H•I•J•K•L•M•N•O•P•Q•R•S•T•U•V•W•X•Y•Z•[•\•]•^•_•`•a•b•c•d•e•f•g•h•i•j•k•l•m•n•o•p•q•r•s•t•u•v•w•x•y•z•{•|•}•~•€••‚•ƒ•„•…•†•‡•ˆ•‰•Š•‹•Œ••Ž•••‘•’•“•”•••–•—•˜•™•š•›•œ••ž•Ÿ• •¡•¢•£•¤•¥•¦•§•¨•©•ª•«•¬•­•®•¯•°•±•²•³•´•µ•¶•·•¸•¹•º•»•¼•½•¾•¿•À•Á•Â•Ã•Ä•Å•Æ•Ç•È•É•Ê•Ë•Ì•Í•Î•Ï•Ð•Ñ•Ò•Ó•Ô•Õ•Ö•×•Ø•Ù•Ú•Û•Ü•Ý•Þ•ß•à•á•â•ã•ä•å•æ•ç•è•é•ê•ë•ì•í•î•ï•ð•ñ•ò•ó•ô•õ•ö•÷•ø•ù•ú•û•ü–@–A–B–C–D–E–F–G–H–I–J–K–L–M–N–O–P–Q–R–S–T–U–V–W–X–Y–Z–[–\–]–^–_–`–a–b–c–d–e–f–g–h–i–j–k–l–m–n–o–p–q–r–s–t–u–v–w–x–y–z–{–|–}–~–€––‚–ƒ–„–…–†–‡–ˆ–‰–Š–‹–Œ––Ž–––‘–’–“–”–•–––—–˜–™–š–›–œ––ž–Ÿ– –¡–¢–£–¤–¥–¦–§–¨–©–ª–«–¬–­–®–¯–°–±–²–³–´–µ–¶–·–¸–¹–º–»–¼–½–¾–¿–À–Á–Â–Ã–Ä–Å–Æ–Ç–È–É–Ê–Ë–Ì–Í–Î–Ï–Ð–Ñ–Ò–Ó–Ô–Õ–Ö–×–Ø–Ù–Ú–Û–Ü–Ý–Þ–ß–à–á–â–ã–ä–å–æ–ç–è–é–ê–ë–ì–í–î–ï–ð–ñ–ò–ó–ô–õ–ö–÷–ø–ù–ú–û–ü—@—A—B—C—D—E—F—G—H—I—J—K—L—M—N—O—P—Q—R—S—T—U—V—W—X—Y—Z—[—\—]—^—_—`—a—b—c—d—e—f—g—h—i—j—k—l—m—n—o—p—q—r—s—t—u—v—w—x—y—z—{—|—}—~—€——‚—ƒ—„—…—†—‡—ˆ—‰—Š—‹—Œ——Ž———‘—’—“—”—•—–———˜—™—š—›—œ——ž—Ÿ— —¡—¢—£—¤—¥—¦—§—¨—©—ª—«—¬—­—®—¯—°—±—²—³—´—µ—¶—·—¸—¹—º—»—¼—½—¾—¿—À—Á—Â—Ã—Ä—Å—Æ—Ç—È—É—Ê—Ë—Ì—Í—Î—Ï—Ð—Ñ—Ò—Ó—Ô—Õ—Ö—×—Ø—Ù—Ú—Û—Ü—Ý—Þ—ß—à—á—â—ã—ä—å—æ—ç—è—é—ê—ë—ì—í—î—ï—ð—ñ—ò—ó—ô—õ—ö—÷—ø—ù—ú—û—ü˜@˜A˜B˜C˜D˜E˜F˜G˜H˜I˜J˜K˜L˜M˜N˜O˜P˜Q˜R˜S˜T˜U˜V˜W˜X˜Y˜Z˜[˜\˜]˜^˜_˜`˜a˜b˜c˜d˜e˜f˜g˜h˜i˜j˜k˜l˜m˜n˜o˜p˜q˜r˜Ÿ˜ ˜¡˜¢˜£˜¤˜¥˜¦˜§˜¨˜©˜ª˜«˜¬˜­˜®˜¯˜°˜±˜²˜³˜´˜µ˜¶˜·˜¸˜¹˜º˜»˜¼˜½˜¾˜¿˜À˜Á˜Â˜Ã˜Ä˜Å˜Æ˜Ç˜È˜É˜Ê˜Ë˜Ì˜Í˜Î˜Ï˜Ð˜Ñ˜Ò˜Ó˜Ô˜Õ˜Ö˜×˜Ø˜Ù˜Ú˜Û˜Ü˜Ý˜Þ˜ß˜à˜á˜â˜ã˜ä˜å˜æ˜ç˜è˜é˜ê˜ë˜ì˜í˜î˜ï˜ð˜ñ˜ò˜ó˜ô˜õ˜ö˜÷˜ø˜ù˜ú˜û˜ü™@™A™B™C™D™E™F™G™H™I™J™K™L™M™N™O™P™Q™R™S™T™U™V™W™X™Y™Z™[™\™]™^™_™`™a™b™c™d™e™f™g™h™i™j™k™l™m™n™o™p™q™r™s™t™u™v™w™x™y™z™{™|™}™~™€™™‚™ƒ™„™…™†™‡™ˆ™‰™Š™‹™Œ™™Ž™™™‘™’™“™”™•™–™—™˜™™™š™›™œ™™ž™Ÿ™ ™¡™¢™£™¤™¥™¦™§™¨™©™ª™«™¬™­™®™¯™°™±™²™³™´™µ™¶™·™¸™¹™º™»™¼™½™¾™¿™À™Á™Â™Ã™Ä™Å™Æ™Ç™È™É™Ê™Ë™Ì™Í™Î™Ï™Ð™Ñ™Ò™Ó™Ô™Õ™Ö™×™Ø™Ù™Ú™Û™Ü™Ý™Þ™ß™à™á™â™ã™ä™å™æ™ç™è™é™ê™ë™ì™í™î™ï™ð™ñ™ò™ó™ô™õ™ö™÷™ø™ù™ú™û™üš@šAšBšCšDšEšFšGšHšIšJšKšLšMšNšOšPšQšRšSšTšUšVšWšXšYšZš[š\š]š^š_š`šašbšcšdšešfšgšhšišjškšlšmšnšošpšqšršsštšušvšwšxšyšzš{š|š}š~š€šš‚šƒš„š…š†š‡šˆš‰šŠš‹šŒššŽššš‘š’š“š”š•š–š—š˜š™ššš›šœššžšŸš š¡š¢š£š¤š¥š¦š§š¨š©šªš«š¬š­š®š¯š°š±š²š³š´šµš¶š·š¸š¹šºš»š¼š½š¾š¿šÀšÁšÂšÃšÄšÅšÆšÇšÈšÉšÊšËšÌšÍšÎšÏšÐšÑšÒšÓšÔšÕšÖš×šØšÙšÚšÛšÜšÝšÞšßšàšášâšãšäšåšæšçšèšéšêšëšìšíšîšïšðšñšòšóšôšõšöš÷šøšùšúšûšü›@›A›B›C›D›E›F›G›H›I›J›K›L›M›N›O›P›Q›R›S›T›U›V›W›X›Y›Z›[›\›]›^›_›`›a›b›c›d›e›f›g›h›i›j›k›l›m›n›o›p›q›r›s›t›u›v›w›x›y›z›{›|›}›~›€››‚›ƒ›„›…›†›‡›ˆ›‰›Š›‹›Œ››Ž›››‘›’›“›”›•›–›—›˜›™›š›››œ››ž›Ÿ› ›¡›¢›£›¤›¥›¦›§›¨›©›ª›«›¬›­›®›¯›°›±›²›³›´›µ›¶›·›¸›¹›º›»›¼›½›¾›¿›À›Á›Â›Ã›Ä›Å›Æ›Ç›È›É›Ê›Ë›Ì›Í›Î›Ï›Ð›Ñ›Ò›Ó›Ô›Õ›Ö›×›Ø›Ù›Ú›Û›Ü›Ý›Þ›ß›à›á›â›ã›ä›å›æ›ç›è›é›ê›ë›ì›í›î›ï›ð›ñ›ò›ó›ô›õ›ö›÷›ø›ù›ú›û›üœ@œAœBœCœDœEœFœGœHœIœJœKœLœMœNœOœPœQœRœSœTœUœVœWœXœYœZœ[œ\œ]œ^œ_œ`œaœbœcœdœeœfœgœhœiœjœkœlœmœnœoœpœqœrœsœtœuœvœwœxœyœzœ{œ|œ}œ~œ€œœ‚œƒœ„œ…œ†œ‡œˆœ‰œŠœ‹œŒœœŽœœœ‘œ’œ“œ”œ•œ–œ—œ˜œ™œšœ›œœœœžœŸœ œ¡œ¢œ£œ¤œ¥œ¦œ§œ¨œ©œªœ«œ¬œ­œ®œ¯œ°œ±œ²œ³œ´œµœ¶œ·œ¸œ¹œºœ»œ¼œ½œ¾œ¿œÀœÁœÂœÃœÄœÅœÆœÇœÈœÉœÊœËœÌœÍœÎœÏœÐœÑœÒœÓœÔœÕœÖœ×œØœÙœÚœÛœÜœÝœÞœßœàœáœâœãœäœåœæœçœèœéœêœëœìœíœîœïœðœñœòœóœôœõœöœ÷œøœùœúœûœü@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~€‚ƒ„…†‡ˆ‰Š‹ŒŽ‘’“”•–—˜™š›œžŸ ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüž@žAžBžCžDžEžFžGžHžIžJžKžLžMžNžOžPžQžRžSžTžUžVžWžXžYžZž[ž\ž]ž^ž_ž`žažbžcždžežfžgžhžižjžkžlžmžnžožpžqžržsžtžužvžwžxžyžzž{ž|ž}ž~ž€žž‚žƒž„ž…ž†ž‡žˆž‰žŠž‹žŒžžŽžžž‘ž’ž“ž”ž•ž–ž—ž˜ž™žšž›žœžžžžŸž ž¡ž¢ž£ž¤ž¥ž¦ž§ž¨ž©žªž«ž¬ž­ž®ž¯ž°ž±ž²ž³ž´žµž¶ž·ž¸ž¹žºž»ž¼ž½ž¾ž¿žÀžÁžÂžÃžÄžÅžÆžÇžÈžÉžÊžËžÌžÍžÎžÏžÐžÑžÒžÓžÔžÕžÖž×žØžÙžÚžÛžÜžÝžÞžßžàžážâžãžäžåžæžçžèžéžêžëžìžížîžïžðžñžòžóžôžõžöž÷žøžùžúžûžüŸ@ŸAŸBŸCŸDŸEŸFŸGŸHŸIŸJŸKŸLŸMŸNŸOŸPŸQŸRŸSŸTŸUŸVŸWŸXŸYŸZŸ[Ÿ\Ÿ]Ÿ^Ÿ_Ÿ`ŸaŸbŸcŸdŸeŸfŸgŸhŸiŸjŸkŸlŸmŸnŸoŸpŸqŸrŸsŸtŸuŸvŸwŸxŸyŸzŸ{Ÿ|Ÿ}Ÿ~Ÿ€ŸŸ‚ŸƒŸ„Ÿ…Ÿ†Ÿ‡ŸˆŸ‰ŸŠŸ‹ŸŒŸŸŽŸŸŸ‘Ÿ’Ÿ“Ÿ”Ÿ•Ÿ–Ÿ—Ÿ˜Ÿ™ŸšŸ›ŸœŸŸžŸŸŸ Ÿ¡Ÿ¢Ÿ£Ÿ¤Ÿ¥Ÿ¦Ÿ§Ÿ¨Ÿ©ŸªŸ«Ÿ¬Ÿ­Ÿ®Ÿ¯Ÿ°Ÿ±Ÿ²Ÿ³Ÿ´ŸµŸ¶Ÿ·Ÿ¸Ÿ¹ŸºŸ»Ÿ¼Ÿ½Ÿ¾Ÿ¿ŸÀŸÁŸÂŸÃŸÄŸÅŸÆŸÇŸÈŸÉŸÊŸËŸÌŸÍŸÎŸÏŸÐŸÑŸÒŸÓŸÔŸÕŸÖŸ×ŸØŸÙŸÚŸÛŸÜŸÝŸÞŸßŸàŸáŸâŸãŸäŸåŸæŸçŸèŸéŸêŸëŸìŸíŸîŸïŸðŸñŸòŸóŸôŸõŸöŸ÷ŸøŸùŸúŸûŸüà@àAàBàCàDàEàFàGàHàIàJàKàLàMàNàOàPàQàRàSàTàUàVàWàXàYàZà[à\à]à^à_à`àaàbàcàdàeàfàgàhàiàjàkàlàmànàoàpàqàràsàtàuàvàwàxàyàzà{à|à}à~à€àà‚àƒà„à…à†à‡àˆà‰àŠà‹àŒààŽààà‘à’à“à”à•à–à—à˜à™àšà›àœààžàŸà à¡à¢à£à¤à¥à¦à§à¨à©àªà«à¬à­à®à¯à°à±à²à³à´àµà¶à·à¸à¹àºà»à¼à½à¾à¿àÀàÁàÂàÃàÄàÅàÆàÇàÈàÉàÊàËàÌàÍàÎàÏàÐàÑàÒàÓàÔàÕàÖà×àØàÙàÚàÛàÜàÝàÞàßàààáàâàãàäàåàæàçàèàéàêàëàìàíàîàïàðàñàòàóàôàõàöà÷àøàùàúàûàüá@áAáBáCáDáEáFáGáHáIáJáKáLáMáNáOáPáQáRáSáTáUáVáWáXáYáZá[á\á]á^á_á`áaábácádáeáfágáháiájákálámánáoápáqárásátáuáváwáxáyázá{á|á}á~á€áá‚áƒá„á…á†á‡áˆá‰áŠá‹áŒááŽááá‘á’á“á”á•á–á—á˜á™ášá›áœáážáŸá á¡á¢á£á¤á¥á¦á§á¨á©áªá«á¬á­á®á¯á°á±á²á³á´áµá¶á·á¸á¹áºá»á¼á½á¾á¿áÀáÁáÂáÃáÄáÅáÆáÇáÈáÉáÊáËáÌáÍáÎáÏáÐáÑáÒáÓáÔáÕáÖá×áØáÙáÚáÛáÜáÝáÞáßáàáááâáãáäáåáæáçáèáéáêáëáìáíáîáïáðáñáòáóáôáõáöá÷áøáùáúáûáüâ@âAâBâCâDâEâFâGâHâIâJâKâLâMâNâOâPâQâRâSâTâUâVâWâXâYâZâ[â\â]â^â_â`âaâbâcâdâeâfâgâhâiâjâkâlâmânâoâpâqârâsâtâuâvâwâxâyâzâ{â|â}â~â€ââ‚âƒâ„â…â†â‡âˆâ‰âŠâ‹âŒââŽâââ‘â’â“â”â•â–â—â˜â™âšâ›âœââžâŸâ â¡â¢â£â¤â¥â¦â§â¨â©âªâ«â¬â­â®â¯â°â±â²â³â´âµâ¶â·â¸â¹âºâ»â¼â½â¾â¿âÀâÁâÂâÃâÄâÅâÆâÇâÈâÉâÊâËâÌâÍâÎâÏâÐâÑâÒâÓâÔâÕâÖâ×âØâÙâÚâÛâÜâÝâÞâßâàâáâââãâäâåâæâçâèâéâêâëâìâíâîâïâðâñâòâóâôâõâöâ÷âøâùâúâûâüã@ãAãBãCãDãEãFãGãHãIãJãKãLãMãNãOãPãQãRãSãTãUãVãWãXãYãZã[ã\ã]ã^ã_ã`ãaãbãcãdãeãfãgãhãiãjãkãlãmãnãoãpãqãrãsãtãuãvãwãxãyãzã{ã|ã}ã~ã€ãã‚ãƒã„ã…ã†ã‡ãˆã‰ãŠã‹ãŒããŽããã‘ã’ã“ã”ã•ã–ã—ã˜ã™ãšã›ãœããžãŸã ã¡ã¢ã£ã¤ã¥ã¦ã§ã¨ã©ãªã«ã¬ã­ã®ã¯ã°ã±ã²ã³ã´ãµã¶ã·ã¸ã¹ãºã»ã¼ã½ã¾ã¿ãÀãÁãÂãÃãÄãÅãÆãÇãÈãÉãÊãËãÌãÍãÎãÏãÐãÑãÒãÓãÔãÕãÖã×ãØãÙãÚãÛãÜãÝãÞãßãàãáãâãããäãåãæãçãèãéãêãëãìãíãîãïãðãñãòãóãôãõãöã÷ãøãùãúãûãüä@äAäBäCäDäEäFäGäHäIäJäKäLäMäNäOäPäQäRäSäTäUäVäWäXäYäZä[ä\ä]ä^ä_ä`äaäbäcädäeäfägähäiäjäkälämänäoäpäqäräsätäuäväwäxäyäzä{ä|ä}ä~ä€ää‚äƒä„ä…ä†ä‡äˆä‰äŠä‹äŒääŽäää‘ä’ä“ä”ä•ä–ä—ä˜ä™äšä›äœääžäŸä ä¡ä¢ä£ä¤ä¥ä¦ä§ä¨ä©äªä«ä¬ä­ä®ä¯ä°ä±ä²ä³ä´äµä¶ä·ä¸ä¹äºä»ä¼ä½ä¾ä¿äÀäÁäÂäÃäÄäÅäÆäÇäÈäÉäÊäËäÌäÍäÎäÏäÐäÑäÒäÓäÔäÕäÖä×äØäÙäÚäÛäÜäÝäÞäßäàäáäâäãäääåäæäçäèäéäêäëäìäíäîäïäðäñäòäóäôäõäöä÷äøäùäúäûäüå@åAåBåCåDåEåFåGåHåIåJåKåLåMåNåOåPåQåRåSåTåUåVåWåXåYåZå[å\å]å^å_å`åaåbåcådåeåfågåhåiåjåkålåmånåoåpåqåråsåtåuåvåwåxåyåzå{å|å}å~å€åå‚åƒå„å…å†å‡åˆå‰åŠå‹åŒååŽååå‘å’å“å”å•å–å—å˜å™åšå›åœååžåŸå å¡å¢å£å¤å¥å¦å§å¨å©åªå«å¬å­å®å¯å°å±å²å³å´åµå¶å·å¸å¹åºå»å¼å½å¾å¿åÀåÁåÂåÃåÄåÅåÆåÇåÈåÉåÊåËåÌåÍåÎåÏåÐåÑåÒåÓåÔåÕåÖå×åØåÙåÚåÛåÜåÝåÞåßåàåáåâåãåäåååæåçåèåéåêåëåìåíåîåïåðåñåòåóåôåõåöå÷åøåùåúåûåüæ@æAæBæCæDæEæFæGæHæIæJæKæLæMæNæOæPæQæRæSæTæUæVæWæXæYæZæ[æ\æ]æ^æ_æ`æaæbæcædæeæfægæhæiæjækælæmænæoæpæqæræsætæuævæwæxæyæzæ{æ|æ}æ~æ€ææ‚æƒæ„æ…æ†æ‡æˆæ‰æŠæ‹æŒææŽæææ‘æ’æ“æ”æ•æ–æ—æ˜æ™æšæ›æœææžæŸæ æ¡æ¢æ£æ¤æ¥æ¦æ§æ¨æ©æªæ«æ¬æ­æ®æ¯æ°æ±æ²æ³æ´æµæ¶æ·æ¸æ¹æºæ»æ¼æ½æ¾æ¿æÀæÁæÂæÃæÄæÅæÆæÇæÈæÉæÊæËæÌæÍæÎæÏæÐæÑæÒæÓæÔæÕæÖæ×æØæÙæÚæÛæÜæÝæÞæßæàæáæâæãæäæåæææçæèæéæêæëæìæíæîæïæðæñæòæóæôæõæöæ÷æøæùæúæûæüç@çAçBçCçDçEçFçGçHçIçJçKçLçMçNçOçPçQçRçSçTçUçVçWçXçYçZç[ç\ç]ç^ç_ç`çaçbçcçdçeçfçgçhçiçjçkçlçmçnçoçpçqçrçsçtçuçvçwçxçyçzç{ç|ç}ç~û~ç€çç‚çƒç„ç…ç†ç‡çˆç‰çŠç‹çŒççŽççç‘ç’ç“ç”ç•ç–ç—ç˜ç™çšç›çœççžçŸç ç¡ç¢ç£ç¤ç¥ç¦ç§ç¨ç©çªç«ç¬ç­ç®ç¯ç°ç±ç²ç³ç´çµç¶ç·ç¸ç¹çºç»ç¼ç½ç¾ç¿çÀçÁçÂçÃçÄçÅçÆçÇçÈçÉçÊçËçÌçÍçÎçÏçÐçÑçÒçÓçÔçÕçÖç×çØçÙçÚçÛçÜçÝçÞçßçàçáçâçãçäçåçæçççèçéçêçëçìçíçîçïçðçñçòçóçôçõçöç÷çøçùçúçûçüè@èAèBèCèDèEèFèGèHèIèJèKèLèMèNèOèPèQèRèSèTèUèVèWèXèYèZè[è\è]è^è_è`èaèbècèdèeèfègèhèièjèkèlèmènèoèpèqèrèsètèuèvèwèxèyèzè{è|è}è~è€èè‚èƒè„è…è†è‡èˆè‰èŠè‹èŒèèŽèèè‘è’è“è”è•è–è—è˜è™èšè›èœèèžèŸè è¡è¢è£è¤è¥è¦è§è¨è©èªè«è¬è­è®è¯è°è±è²è³è´èµè¶è·è¸è¹èºè»è¼è½è¾è¿èÀèÁèÂèÃèÄèÅèÆèÇèÈèÉèÊèËèÌèÍèÎèÏèÐèÑèÒèÓèÔèÕèÖè×èØèÙèÚèÛèÜèÝèÞèßèàèáèâèãèäèåèæèçèèèéèêèëèìèíèîèïèðèñèòèóèôèõèöè÷èøèùèúèûèüé@éAéBéCéDéEéFéGéHéIéJéKéLéMéNéOéPéQéRéSéTéUéVéWéXéYéZé[é\é]é^é_é`éaébécédéeéfégéhéiéjékéléménéoépéqérésétéuévé€éé‚éƒé„é…é†é‡éˆé‰éŠé‹éŒééŽééé‘é’é“é”é•é–é—é˜é™éšé›éœééžéŸé é¡é¢é£é¤é¥é¦é§é¨é©éªé«é¬é­é®é¯é°é±é²é³é´éµé¶é·é¸é¹éºé»é¼é½é¾é¿éÀéÁéÂéÃéÄéÅéÆéÇéÈéÉéÊéËéÌéÍéÎéÏéÐéÑéÒéÓéÔéÕéÖé×éØéÙéÚéÛéÜéÝéÞéßéàéáéâéãéäéåéæéçéèéééêéëéìéíéîéïéðéñéòéóéôéõéöé÷éøéùéúéûéüê@êAêBêCêDêEêFêGêHêIêJêKêLêMêNêOêPêQêRêSêTêUêVêWêXêYêZê[ê\ê]ê^ê_ê`êaêbêcêdêeêfêgêhêiêjêkêlêmênêoêpêqêrêsêtêuêvêwêxêyêzê{ê|ê}ê~ê€êê‚êƒê„ê…ê†ê‡êˆê‰êŠê‹êŒêêŽêêê‘ê’ê“ê”ê•ê–ê—ê˜ê™êšê›êœêêžêŸê ê¡ê¢ê£ê¤éwéxéyézé{é|é}é~ú@úAúBúCúDúEúFúGúHúIúUúVúWú\ú]ú^ú_ú`úaúbúcúdúeúfúgúhúiújúkúlúmúnúoúpúqúrúsútúuúvúwúxúyúzú{ú|ú}ú~ú€úú‚úƒú„ú…ú†ú‡úˆú‰úŠú‹úŒúúŽúúú‘ú’ú“ú”ú•ú–ú—ú˜ú™úšú›úœúúžúŸú ú¡ú¢ú£ú¤ú¥ú¦ú§ú¨ú©úªú«ú¬ú­ú®ú¯ú°ú±ú²ú³ú´úµú¶ú·ú¸ú¹úºú»ú¼ú½ú¾ú¿úÀúÁúÂúÃúÄúÅúÆúÇúÈúÉúÊúËúÌúÍúÎúÏúÐúÑúÒúÓúÔúÕúÖú×úØúÙúÚúÛúÜúÝúÞúßúàúáúâúãúäúåúæúçúèúéúêúëúìúíúîúïúðúñúòúóúôúõúöú÷úøúùúúúûúüû@ûAûBûCûDûEûFûGûHûIûJûKûLûMûNûOûPûQûRûSûTûUûVûWûXûYûZû[û\û]û^û_û`ûaûbûcûdûeûfûgûhûiûjûkûlûmûnûoûpûqûrûsûtûuûvûwûxûyû€ûû‚ûƒû„û…û†û‡ûˆû‰ûŠû‹ûŒûûŽûûû‘û’û“û”û•û–û—û˜û™ûšû›ûœûûžûŸû û¡û¢û£û¤û¥û¦û§û¨û©ûªû«û¬û­û®û¯û°û±û²û³û´ûµû¶û·û¸û¹ûºû»û¼û½û¾û¿ûÀûÁûÂûÃûÄûÅûÆûÇûÈûÉûÊûËûÌûÍûÎûÏûÐûÑûÒûÓûÔûÕûÖû×ûØûÙûÚûÛûÜûÝûÞûßûàûáûâûãûäûåûæûçûèûéûêûëûìûíûîûïûðûñûòûóûôûõûöû÷ûøûùûúûûûüü@üAüBüCüDüEüFüGüHüIüJüKûzû{û|û}";
+
+
+// •¶Žš—ñ‚ð”z—ñ‚É•ÏŠ·
+var str2array = function(str) {
+    var array = [],i,il=str.length;
+    for(i=0;i<il;i++) array.push(str.charCodeAt(i));
+    return array;
+};
+
+
+function doit() {
+    var f = document.f;
+    var x;
+
+    x = md5(utf16to8(f.source.value));
+    f.output.value = md5hex(x);
+}
+
+
+function bra(){
+var i,j,k,k2,k3,l;
+var x1=new Array(64);
+var x2=new Array(64);
+var x3=new Array(64);
+var inv_x=new Array(64);
+var pk1=new Array(64);
+var pk2=new Array(64);
+var pk=new Array(64*4);
+
+
+for(i=0;i<64;i++)
+x1[i]= -1;
+
+i=Math.random();
+i=Math.ceil(i*100)%64;
+  x1[63]= i;
+
+i=Math.random()%64;
+i=Math.ceil(i*100)%64;
+  x2[63]= i;
+
+i=Math.random()%64;
+i=Math.ceil(i*100)%64;
+  x3[63]= i;
+
+i=0;
+  while(i<63){
+k=0;
+
+    j=Math.random();
+    j=Math.ceil(j*100)%64;
+    for(l=0;l<i+1;l++){
+      if(x1[l]==j && j!=x1[63])
+      k=1;
+    }
+    
+    if(k==0 && j!=x1[63] && i!=j){
+      x1[i]=j;
+      i++;
+    }
+
+  }
+
+
+i=0;
+  while(i<63){
+k=0;
+
+    j=Math.random();
+    j=Math.ceil(j*100)%64;
+    for(l=0;l<i+1;l++){
+      if(x2[l]==j && j!=x2[63])
+      k=1;
+    }
+    
+    if(k==0 && j!=x2[63] && i!=j){
+      x2[i]=j;
+      i++;
+    }
+
+  }
+
+
+i=0;
+  while(i<63){
+k=0;
+
+    j=Math.random();
+    j=Math.ceil(j*100)%64;
+    for(l=0;l<i+1;l++){
+      if(x3[l]==j && j!=x3[63])
+      k=1;
+    }
+    
+    if(k==0 && j!=x3[63] && i!=j){
+      x3[i]=j;
+      i++;
+    }
+
+  }
+
+
+var e=new Array(64);
+var c=new Array(64);
+
+for(i=0;i<64;i++){
+inv_x[x1[i]]=i;
+e[i]=i;
+}
+
+
+for(i=0;i<64;i++){
+pk1[i]=x1[x2[inv_x[i]]];
+pk2[i]=x1[x3[inv_x[i]]];
+}
+
+
+
+var u=new Array(64);
+
+for(i=0;i<32;i++){
+u[i]=Math.random();
+u[i]=Math.ceil(u[i]*100)%256;
+}
+
+
+
+for(i=0;i<32;i++){
+while(u[i]>0){
+if(u[i]%2==0){
+for(j=0;j<64;j++)
+c[j]=e[pk1[j]];
+for(j=0;j<64;j++)
+e[j]=c[j];
+} else if(u[i]%2==1){
+for(j=0;j<64;j++)
+c[j]=e[pk2[j]];
+for(j=0;j<64;j++)
+e[j]=c[j];
+}
+u[i]=(u[i]<<1);
+}
+}
+
+
+for(i=0;i<64;i++)
+pk[i]=x2[i];
+for(i=0;i<64;i++)
+pk[i+64]=x3[i];
+for(i=0;i<64;i++)
+pk[i+64*2]=pk1[i];
+for(i=0;i<64;i++)
+pk[i+64*3]=pk2[i];
+
+document.oreore.pk1.value=pk;
+document.oreore.sk.value=x1;
+alert("test");
+
+return pk;
+}
+
+
+function eva(){
+	// TODO: ‚±‚±‚ÉƒRƒ“ƒgƒ[ƒ‹’Ê’mƒnƒ“ƒhƒ‰[ ƒR[ƒh‚ð’Ç‰Á‚µ‚Ü‚·B
+var m = [ 148, 246, 52, 251, 16, 194, 72, 150, 249, 23, 90, 107, 151, 42, 154, 124, 48, 58, 30, 24, 42, 33, 38, 10, 115, 41, 164, 16, 33, 32, 252, 143, 86, 175, 8, 132, 103, 231, 95, 190, 61, 29, 215, 75, 251, 248, 72, 48, 224, 200, 147, 93, 112, 25, 227, 223, 206, 137, 51, 88, 109, 214, 17, 172, 231, 59, 161, 254, 45, 253, 228, 219, 225, 65, 58, 180, 0, 32, 38, 146, 196, 253, 82, 5, 201, 22, 211, 93, 110, 90, 173, 29, 126, 123, 154, 173, 16, 67, 7, 79, 171, 43, 96, 84, 174, 42, 141, 144, 239, 203, 189, 11, 163, 130, 98, 249, 126, 64, 124, 237, 27, 69, 27, 73, 157, 54, 31, 249, 151, 111, 67, 97, 41, 154, 90, 147, 108, 128, 216, 198, 16, 32, 147, 4, 68, 254, 203, 34, 214, 190, 104, 245, 156, 241, 132, 195, 18, 47, 41, 248, 68, 102, 92, 26, 239, 113, 90, 255, 227, 237, 33, 62, 171, 72, 50, 227, 112, 26, 150, 103, 27, 185, 31, 223, 186, 8, 240, 115, 37, 143, 63, 18, 225, 209, 90, 100, 68, 217, 232, 0, 218, 23, 114, 224, 8, 106, 34, 17, 239, 126, 202, 175, 147, 88, 39, 17, 61, 47, 104, 65, 30, 126, 234, 175, 52, 87, 70, 38, 114, 250, 141, 254, 27, 166, 210, 148, 111, 175, 233, 247, 137, 209, 111, 228, 136, 196, 10, 245, 237, 16, 242, 21, 68, 35, 177, 55 ];
+
+
+
+
+	var nov=new Array();
+	var txt=new Array();
+	var c=new Array();
+	var a=new Array();
+	var bb=new Array();
+	var t=new Array();
+	var tmp=new Array();
+	var tmb=new Array();
+	var u=new Array();
+	var d=new Array();
+	var i;
+	var j;
+	var k;
+	var N;
+	var ans=new Array();
+	var count;
+	var count2;
+	var ans2=new Array();
+	var cc=new Array();
+	var array=new Array();
+	var pk=new Array(64*4);
+	var sss;
+	var gs=new Array(64);
+	var gr=new Array(64);
+	var ps=new Array(64);
+	var pr=new Array(64);
+	var vx=new Array(64);
+	var vx2=new Array(64);
+
+
+
+	N=64;
+	txt=document.oreore.plain.value;
+	alert(txt);
+//	document.oreore.cipher.value=txt;
+	
+	sss=document.oreore.pk1.value;
+
+pk=sss.split(",");
+
+	
+	for(i=0;i<64;i++){
+	gs[i]=pk[i];
+	ps[i]=pk[i+64];
+	gr[i]=pk[i+64*2];
+	pr[i]=pk[i+64*3];
+}
+
+
+  array = str2array( txt );
+
+  for(i=0;i<64;i++)
+  c[i]=Math.ceil(Math.random()*256)%256;
+
+
+	for (i = 0; i < 64; i++){
+		a[i] = i;
+		bb[i] = i;
+	}
+
+	for (i = 0; i < array.length; i++){
+		for (j = 0; j < 7000; j++){
+			if (txt[i] == moji[j])
+				t[i] = j;
+		}
+	}
+	alert(a);
+
+//generate sessioon key
+	for (i = 0; i < 32; i++){
+		for (j = 0; j < 8; j++){
+			if (c[i] % 2 == 0){
+
+				for (k = 0; k < 64; k++){
+					tmp[k] = a[gs[k]];
+					tmb[k] = bb[gr[k]];
+				}
+
+				for (k = 0; k < 64; k++){
+					a[k] = tmp[k];
+					bb[k] = tmb[k];
+				}
+			}
+			else if (c[i] % 2 == 1){
+
+				for (k = 0; k < 64; k++){
+					tmp[k] = a[ps[k]];
+					tmb[k] = bb[pr[k]];
+				}
+
+				for (k = 0; k < 64; k++){
+					a[k] = tmp[k];
+					bb[k] = tmb[k];
+				}
+			}
+			c[i] = (c[i] >> 1);
+			
+		}
+	}
+
+
+	for (i = 0; i < 64; i++)
+		d[bb[i]] = i;
+
+
+
+	for (i = 0; i < N; i++)
+		u[i] = (m[i] * m[i])%4096;
+
+
+for(i=0;i<64;i++)
+vx[i]=bb[gs[d[i]]];
+//document.oreore.email.value=t;
+
+//vx
+
+//txt.length / 64 + 1
+	count2 = 0;
+	for (i = 0; i < 1; i++){
+		count = 0;
+		
+		for (j = 0; j < 64; j++)
+			u[j] ^= u[vx[j]];
+
+		document.oreore.email.value=u;
+
+//		for (k = i * 64; k < i * 64 + 64; k++){
+		for (k = 0; k < txt.length; k++){
+			t[k] ^= u[count++] % 4096;
+			count2++;
+			if (count2 == txt.length)
+				break;
+		}
+		for (j = 0; j < 64; j++)
+			vx2[j] = bb[vx[d[j]]];
+		for(j=0;j<64;j++)
+		vx[j]=vx2[j];
+
+	}
+
+
+	var ff=new Array();
+	var f=new Array();
+
+for(i=0;i<64;i++)
+f[i]=a[i];
+
+
+j=64;
+	for (i = 0; i < txt.length; i++){
+		f[j++] = moji[t[i]];
+	}
+  alert(f);
+    
+    
+	document.oreore.cipher.value = f; //.join("");
+
+}
+
+
+
+function vae(){
+var x=new Array(64);
+var a=new Array();
+var b=new Array();
+  var c=new Array();
+var y=new Array(64);
+var array=new Array();
+var srt,smt1,smt2;
+var num;
+var pk=new Array(64*4);  
+var txt=new Array();
+var ses=new Array(64);
+var it;
+var m = [ 148, 246, 52, 251, 16, 194, 72, 150, 249, 23, 90, 107, 151, 42, 154, 124, 48, 58, 30, 24, 42, 33, 38, 10, 115, 41, 164, 16, 33, 32, 252, 143, 86, 175, 8, 132, 103, 231, 95, 190, 61, 29, 215, 75, 251, 248, 72, 48, 224, 200, 147, 93, 112, 25, 227, 223, 206, 137, 51, 88, 109, 214, 17, 172, 231, 59, 161, 254, 45, 253, 228, 219, 225, 65, 58, 180, 0, 32, 38, 146, 196, 253, 82, 5, 201, 22, 211, 93, 110, 90, 173, 29, 126, 123, 154, 173, 16, 67, 7, 79, 171, 43, 96, 84, 174, 42, 141, 144, 239, 203, 189, 11, 163, 130, 98, 249, 126, 64, 124, 237, 27, 69, 27, 73, 157, 54, 31, 249, 151, 111, 67, 97, 41, 154, 90, 147, 108, 128, 216, 198, 16, 32, 147, 4, 68, 254, 203, 34, 214, 190, 104, 245, 156, 241, 132, 195, 18, 47, 41, 248, 68, 102, 92, 26, 239, 113, 90, 255, 227, 237, 33, 62, 171, 72, 50, 227, 112, 26, 150, 103, 27, 185, 31, 223, 186, 8, 240, 115, 37, 143, 63, 18, 225, 209, 90, 100, 68, 217, 232, 0, 218, 23, 114, 224, 8, 106, 34, 17, 239, 126, 202, 175, 147, 88, 39, 17, 61, 47, 104, 65, 30, 126, 234, 175, 52, 87, 70, 38, 114, 250, 141, 254, 27, 166, 210, 148, 111, 175, 233, 247, 137, 209, 111, 228, 136, 196, 10, 245, 237, 16, 242, 21, 68, 35, 177, 55 ];
+var u=new Array();
+var vv=new Array();
+var yy=new Array(64);
+var y2=new Array(64);
+
+
+it=0;
+
+ txt=document.oreore.cipher.value.split(",");
+ pk=document.oreore.pk1.value.split(",");
+// pk=window.atob(srt);
+  x=document.oreore.sk.value.split(",");
+
+ num=txt.length;
+  
+  for(i=0;i<64;i++){
+  y[i]=txt[i];
+  yy[i]=pk[i];
+  }
+  for(i=64;i<num;i++)
+  array[i-64]=txt[i];
+alert(array.length);
+alert(array);
+
+/*
+for(i=0;i<y.length;i++){
+for(j=0;j<4096;j++){
+if(y[i]==moji[j]){
+y2[i]=j;
+break;
+}
+}
+}
+*/
+
+/*
+//moji‚Ì‘ã‚í‚è‚ÉŽg‚¤‚±‚Æ‚ª‚Å‚«‚é
+  var text=[];
+//  alert(array.length);
+  for(i=0;i<num;i++)
+  text += String.fromCharCode(array[i]);
+*/
+
+  for(i=0;i<array.length+1;i++){
+  for(j=0;j<4096;j++){
+  if(array[i]==moji[j]){
+  c[i]=j;
+  break;
+  }
+  }
+  }
+
+
+
+  for(i=0;i<64;i++)
+  a[x[i]]=i;
+
+  for(i=0;i<64;i++)
+    ses[i]=x[y[a[i]]];
+
+
+  for(i=0;i<64;i++)
+  x[i]=ses[i];
+ 
+ for(i=0;i<64;i++)
+	a[x[i]]=i;
+ 
+ for(i=0;i<64;i++)
+ ses[i]=x[yy[a[i]]];
+
+ 
+ it=num/64+1;
+
+
+
+for (i = 0; i < 64; i++)
+	u[i] = (m[i] * m[i])%4096;
+
+
+ for(i=0;i<array.length/64;i++){
+
+   for(j=0; j<64; j++)
+	u[j]^=u[ses[j]];
+
+  for(j=0; j<i*64 + array.length%64; j++)
+	c[j]^=u[j];
+	
+	for(j=0;j<64;j++)
+	ses[j]=x[yy[a[j]]];
+
+	for(j=0;j<64;j++)
+ 	yy[j]=ses[j];
+
+}
+
+for(i=0;i<c.length;i++)
+vv[i]=moji[c[i]];
+
+document.oreore.plain.value=vv.join("");
+  
+}
+
+
+
+function t2(){
+    var f = document.f;
+    var x;
+
+x=f.source.value;
+alert(x);
+f.output.value=x;
+
+}
+
+function test(){
+var aa,bb;
+
+aa=document.oreore.author.value;
+alert(aa);
+document.oreore.pk1.value=aa;
+bb=document.oreore.pk1.value;
+alert(bb);
+
+}
+
+
+</script>
+
+
+<FORM name=f>Œ³ƒeƒLƒXƒg<BR>
+<TEXTAREA cols=60 name=source rows=4></TEXTAREA><BR>
+<BR>ã‚ÌƒeƒLƒXƒg‚ð MD5 ‚µ‚½ƒeƒLƒXƒg<BR>
+<INPUT name=output size=60><BR>
+<BR><INPUT onclick=doit() type=button value=ƒeƒXƒgŠJŽn> 
+</FORM>
+
+
+
+<hr noshade size="1" width="80%">
+
+<table width="500" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td height="237">
+        <div align="right">
+	<form name="oreore">
+	ƒpƒXƒ[ƒhF<input name="author" size="60"><br>
+	<input type="button" value="Œ®¶¬" onclick="bra()"></br>
+	
+	PKF<textarea cols="60" rows="5" name="pk1"></textarea><br>
+	SKF<textarea cols="60" rows="5" name="sk"></textarea><br>
+	<br>
+	“dŽqƒ[ƒ‹F<input name="email" size="60"><br>
+	‘è–¼F<input name="title" size="60"><br>
+	inputF<textarea cols="60" rows="5" name="plain"></textarea><br>
+	outputF<textarea cols="60" rows="5" name="cipher"></textarea><br>
+
+	<input type="button" value="enc" onclick="eva();">
+	<input type="button" value="dec" onclick="vae();">
+	<input type="reset" value="ƒŠƒZƒbƒg">
+	<input value=" Select " onclick="document.oreore.text.select();" type="button"><br>
+	</form>
+	</div>
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
+
