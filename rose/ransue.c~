@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <time.h>
 
-#define N 21
-#define M 21
+#define N 17
+#define M 17
 
 
 unsigned char x[5][M]={-1};
