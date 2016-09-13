@@ -1,0 +1,95 @@
+#include "oplib.cpp"
+
+
+int main(int argc,char **argv){
+  int i,j,k,l,c;
+  unsigned long a,x,count=1;
+  //  unsigned char cc[K]={0};
+  unsigned char m[K],mm[T]={0};
+  time_t timer;
+  FILE *fp,*fq;
+
+  unsigned char g2[7]={1,0,9,0,0,6,4};
+  //  unsigned char s[K]={0}; //{4,12,7,8,11,13};
+
+  unsigned char ee[10]={1,2,3,4,5,6,7,8,9,10};
+  unsigned char zz[T]={86,97,114,105,97,98,108,101,32,80,111,108,121,110,111,109};
+  //  unsigned char zz[T]={10,97,114,105,97,98,108,101,32,80,111,108,121,110,111,109};
+  int y;
+  OP f,h,r,w;
+  vec v;
+  unsigned char d=0;
+
+  //  unsigned char syn[K]={4,12,7,8,11,13};
+  //  unsigned char g[K+1]={1,0,0,0,1,0,1};
+
+  //  makegf(M);
+  //  makefg(M);
+
+  //  zz[0]=1;
+  //zz[1]=2;
+  //zz[2]=4;
+  w=setpol(g,K+1);
+  printpol(o2v(w));
+  //    exit(1);
+
+  fp=fopen(argv[1],"rb");
+  fq=fopen(argv[2],"wb");
+
+  while((c=fread(zz,1,T,fp))>0){
+    //    for(i=0;i<T;i++)
+    //  zz[i]=i+1;
+  
+  for(i=0;i<M;i++){
+    d=trace(w,(unsigned char)i);
+    printf("%d,",d);
+    if(d==0){
+      printf("%i bad trace 0\n",i);
+      exit(1);
+    }
+  }
+  printf("\n");
+  //exit(1);
+
+  
+   det(g);
+  for(i=0;i<K;i++){
+    for(j=0;j<M;j++)
+      printf("%d,",mat[i][j]);
+    printf("\n");
+  }
+  //exit(1);
+
+  printf("zz=");
+  for(i=0;i<K;i++){
+    syn[i]=0;
+
+    for(j=0;j<T;j++){
+      printf("%u,",zz[j]);
+      syn[i]^=gf[mlt(fg[zz[j]],fg[mat[i][j]])];
+    }
+    //    printf("%d,",syn[i]);
+  }
+  printf("\n");
+  //    exit(1);  
+  
+  f=setpol(syn,K);
+  printpol(o2v(f));
+  //  exit(1);
+  r=decode(w,f);
+  
+  for(i=0;i<T;i++){
+    mm[i]=r.t[i].a;
+    printf("e=%d %d\n",r.t[i].a,r.t[i].n);
+  }
+  fwrite(mm,1,T,fq);
+  }
+
+  fclose(fp);
+  fclose(fq);
+  
+  // h2g(mat);
+  //  exit(1);
+
+  return 0;
+}

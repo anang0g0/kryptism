@@ -1,0 +1,28 @@
+#include <stdio.h>
+
+
+int main(int argc,char *argv[]){
+  int i,j,count=0;
+  unsigned char c[16]={0};
+  FILE *fp;
+
+  fp=fopen(argv[1],"rb");
+  
+  while((j=fread(c,1,16,fp))>0){
+    for(i=0;i<16;i++){
+      //      if(c[i]>0)
+      //printf("%d\n",c[i]);
+      if(c[i]==0)
+	printf("%d 00\n",count);
+      if(c[i]==255)
+	printf("%d FF\n",count);
+      }
+    count++;
+  }
+   
+  fclose(fp);
+
+  return 0;
+}
+
+  
