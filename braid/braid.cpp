@@ -12,22 +12,23 @@ ver 1.0
 #include <time.h>
 #include <ctype.h>
 #include <string.h>
-#include "chash.cpp"
-#include "base64.cpp"
+#include "chash.c"
+//#include "base64.cpp"
 
-
+#define N 256
+#define DEG 27
 
 //s,r is system parametor
-unsigned char r[N]={50,57,14,8,53,6,19,47,12,60,7,49,51,44,4,16,10,15,28,2,41,33,35,42,23,21,38,29,27,36,63,48,59,17,3,24,58,39,18,9,5,11,22,46,45,40,1,34,32,56,43,61,37,31,30,13,20,55,0,62,26,25,52,54};
+//unsigned char r[N]={50,57,14,8,53,6,19,47,12,60,7,49,51,44,4,16,10,15,28,2,41,33,35,42,23,21,38,29,27,36,63,48,59,17,3,24,58,39,18,9,5,11,22,46,45,40,1,34,32,56,43,61,37,31,30,13,20,55,0,62,26,25,52,54};
 
-unsigned char s[N]={58,1,59,3,36,25,63,51,50,21,17,11,53,2,18,7,6,12,31,28,20,32,14,8,22,13,38,30,26,34,47,54,46,43,60,35,55,49,27,39,40,61,56,5,37,4,9,16,52,29,48,19,0,62,10,33,41,42,15,44,57,24,45,23};
+//unsigned char s[N]={58,1,59,3,36,25,63,51,50,21,17,11,53,2,18,7,6,12,31,28,20,32,14,8,22,13,38,30,26,34,47,54,46,43,60,35,55,49,27,39,40,61,56,5,37,4,9,16,52,29,48,19,0,62,10,33,41,42,15,44,57,24,45,23};
 
 //ps,pr is public-kry
-unsigned char ps[N]; 
-unsigned char pr[N]; 
+//unsigned char ps[N]; 
+//unsigned char pr[N]; 
 
-unsigned char x[5][N]={-1};
-unsigned char message[4]={0};
+unsigned char X[5][DEG]={-1};
+//unsigned char message[4]={0};
 
 unsigned char salt[64]={ 148, 246, 52, 251, 16, 194, 72, 150, 249, 23, 90, 107, 151, 42, 154, 124, 48, 58, 30, 24, 42, 33, 38, 10, 115, 41, 164, 16, 33, 32, 252, 143, 86, 175, 8, 132, 103, 231, 95, 190, 61, 29, 215, 75, 251, 248, 72, 48, 224, 200, 147, 93, 112, 25, 227, 223, 206, 137, 51, 88, 109, 214, 17, 172};
 
@@ -37,7 +38,7 @@ unsigned char salt[64]={ 148, 246, 52, 251, 16, 194, 72, 150, 249, 23, 90, 107, 
 //mmc mat:G'=G+e, c=rG'+e,n=512,k=224,|G'|=114688bit
 
 
-
+/*
 int deka(unsigned long long int u[N]){
   unsigned long long H[8]; //ƒnƒbƒVƒ…
   int t,i;
@@ -63,6 +64,7 @@ int deka(unsigned long long int u[N]){
 
   return 0;
 }
+*/
 
 
 void ufu(){
@@ -75,29 +77,29 @@ void ufu(){
 	
 
  for(ii=0;ii<3;ii++){
-   for(i=0;i<N;i++)
-     x[ii][i]= -1;
+   for(i=0;i<DEG;i++)
+     X[ii][i]= -1;
    
-   i=rand()%N;
-   x[ii][N-1]= i;
+   i=rand()%DEG;
+   X[ii][DEG-1]= i;
    
    i=0;
-   while(i<N-1){
+   while(i<DEG-1){
      k=0;
      
-     j=rand()%N;
+     j=rand()%DEG;
      for(l=0;l<i+1;l++){
-       if(x[ii][l]==j && j!=x[ii][N-1])
+       if(X[ii][l]==j && j!=X[ii][DEG-1])
 	 k=1;
     }
      
-     if(k==0 && j!=x[ii][N-1] && i!=j){
-       x[ii][i]=j;
-       printf("%d,",x[ii][i]);
+     if(k==0 && j!=X[ii][DEG-1] && i!=j){
+       X[ii][i]=j;
+       printf("%d,",X[ii][i]);
        i++;
      }
    }
-   printf("%d},\n",x[ii][N-1]);
+   printf("%d},\n",X[ii][DEG-1]);
  }
  printf("%d\n",i);
 
@@ -228,6 +230,171 @@ void keygen(){
 }
 
 
+int chksalt(void){
+  int i,j;
+  unsigned char c[256]={0};
+
+  j=0;
+  for(i=0;i<DEG;i++){
+    if(c[salt[i]]!=salt[i]){
+      c[salt[i]]=salt[i];
+      j++;
+      }
+      }
+  printf("%d\n",j);
+  for(i=0;i<256;i++)
+    printf("%d\n",c[i]);
+  printf("\n");
+  
+  return 0;
+}
+
+typedef struct {
+  unsigned char s[N];
+  unsigned char n[N];
+} co;
+
+
+co semi(co pair1,co pair2){
+  int i,j,k;
+  co ret;
+  unsigned char tmp[N]={0};
+
+  //  (c,s)(d,t)=(cd,d(s)+t)
+  
+
+  for(i=0;i<N;i++)
+    ret.s[i]=pair1.s[pair2.s[i]];
+
+  for(i=0;i<N;i++)
+    tmp[i]=pair1.n[pair2.s[i]];
+  for(i=0;i<N;i++)
+    ret.n[i]=tmp[i]^pair2.n[i];
+
+  return ret;
+  
+}
+
+co inv_semi(co pair){
+  int i,j,k;
+  unsigned char tmp[N]={0};
+  co ret;
+  
+  //  (c,s)^-1=(c^-1,-sc^-1)
+  for(i=0;i<N;i++)
+    ret.s[pair.s[i]]=i;
+  for(i=0;i<N;i++)
+    tmp[i]=(256-pair.n[i]);
+  for(i=0;i<N;i++)
+    ret.n[i]=tmp[i]^pair.n[ret.s[i]];
+
+  return ret;
+  
+}
+
+
+int gendata(void){
+  int i,j;
+  unsigned char c[DEG]={0};
+  unsigned char re[DEG]={0};
+  unsigned char b[DEG]={0};
+  unsigned char a[DEG]={0};
+  unsigned int inv_x[DEG]={0};
+
+  FILE *fp;
+
+  fp=fopen("data.dat","wb");
+
+  
+  for(i=0;i<DEG;i++)
+    a[i]=salt[i];
+
+  ufu();
+
+  j=0;
+
+  for(i=0;i<DEG;i++)
+    inv_x[X[0][i]]=i;
+
+  
+  while(j<2000000){
+
+    for(i=0;i<DEG;i++)
+      re[i]=X[0][X[1][inv_x[i]]];
+    
+    for(i=0;i<DEG;i++)
+    X[1][i]=re[i];
+
+  for(i=0;i<DEG;i++)
+    b[i]^=a[re[i]];
+
+  for(i=0;i<DEG;i++)
+    a[i]=b[i];
+
+  
+  for(i=0;i<DEG;i++)
+    re[i]=X[0][X[2][inv_x[i]]];
+  for(i=0;i<DEG;i++)
+    X[2][i]=re[i];
+
+  for(i=0;i<DEG;i++)
+    b[i]^=a[re[i]];
+
+  for(i=0;i<DEG;i++)
+    a[i]=b[i];
+  
+  
+    fwrite(b,1,DEG,fp);
+
+  j++;
+  }
+
+    
+  fclose(fp);      
+
+
+  return 0;
+
+}
+
+
+ int hout(void){
+   int i,j,tmp=0;
+  arrayul p;
+  array16 t;
+  set s;
+  arrayn nn;
+  array16 a16;
+
+  
+  seed();
+  p=crand(password);
+  //  for(i=1;i<8*8;i++)
+  // printf("%u\n",p.d[i]);
+  //  exit(1);
+  s=session(p.d);
+  //for(i=0;i<NN;i++)
+  //printf("%d\n",s.b[i]);
+  //  exit(1);
+    nn=chash(s.b);
+  //  t=hash(argc,argv);
+    for(j=0;j<16;j++){
+      for(i=4*j;i<4*j+4;i++)
+	tmp^=(nn.ar[i]<<(8*i));
+	      
+	      a16.h[j]=tmp;
+	      tmp=0;
+    }
+ 
+
+  for(i=0;i<16;i++)
+    printf("%08x ",a16.h[i]);
+  printf("\n");
+
+  return 0;
+}
+
+
 int main(int argc,char *argv[]){
   int i,j,k,count=0;
   unsigned char inv_x[N],o;
@@ -235,7 +402,7 @@ int main(int argc,char *argv[]){
   time_t t;
   FILE *fp,*fo;
   set fai;
-  arrayn p;
+  arrayn p,aa;
   array8 q;
 
   
@@ -251,10 +418,34 @@ int main(int argc,char *argv[]){
   unsigned char u[N/2],tmp[N],tmb[N];
   unsigned char inv_t[16][N];
   unsigned char nx[N];
+
+  arrayul pp;
+  array16 tt;
+
+  seed();
+  pp=crand(password);
+  for(i=0;i<8;i++)
+    printf("%llu\n",pp.u[i]);
+
+  hout();
+
+  //  mainga(argc,argv);
+  exit(1);
+
+  
+  tt=hash(argc,argv);
+  for(i=0;i<16/2;i++)
+    printf("%08x ",tt.h[i]);
+  printf("\n");
+
   
 
   srand(time(&t));
 
+  //    chksalt();
+       gendata();
+  exit(1);
+  
   for(i=0;i<N/2;i++){
     u[i]=rand()%256;
     printf("%u\n",u[i]);
