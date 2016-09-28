@@ -173,7 +173,7 @@ time_t t;
 	}
 	for(i=0;i<NN;i++){
 	  b[i]^=m[i];
-	printf("%d\n",b[i]);
+	  //printf("%d\n",b[i]);
 	}
 	//
 	//m[i];
@@ -184,7 +184,7 @@ time_t t;
 
 	for(i=0;i<NN;i++){
 	  n.ar[i]=b[i];
-	  printf("%x\n",n.ar[i]);
+	  //printf("%x\n",n.ar[i]);
 	}
 	//	exit(1);
 
@@ -253,21 +253,4 @@ arrayul crand(unsigned char u[NN]){
 }
 
 
- int mainga(int argc,char *argv[]){
-  int i,j;
-  arrayul p;
-  array16 t;
-
-  seed();
-  p=crand(password);
-  for(i=0;i<8;i++)
-    printf("%llu\n",p.u[i]);
-  
-  t=hash(argc,argv);
-  for(i=0;i<16/2;i++)
-    printf("%08x ",t.h[i]);
-  printf("\n");
-
-  return 0;
-}
 
