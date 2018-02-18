@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 
 #define N 32
@@ -7,6 +8,7 @@
 
 unsigned char x[5][M]={-1};
 
+//rand()を使って不動点のない置換群を作る。
 void ufu(){
 int i,k,j,l;
 time_t t;
@@ -45,6 +47,7 @@ printf("%d\n",i);
 //	return &x;
 }
 
+//NISTの統計テストツールにかけるためのデータをファイルに出力する。
 void data(){
   int i,j=0;
   unsigned char a[N]={1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
