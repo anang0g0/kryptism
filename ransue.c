@@ -45,61 +45,61 @@ printf("%d\n",i);
 //	return &x;
 }
 
+void data(){
+  int i,j=0;
+  unsigned char a[N]={1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+  
+  int flag=0;
+  int count=0;
+  unsigned char aa[32]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
-int main(){
-int i,j=0;
- unsigned char a[N]={1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-
- int flag=0;
- int count=0;
- unsigned char aa[32]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-
-unsigned char z[N];
-unsigned char w[N];
- FILE *fp;
+  unsigned char z[N];
+  unsigned char w[N];
+  FILE *fp;
 
 
  fp=fopen("rand.dat","wb");
- 
-ufu();
-
-for(i=0;i<N;i++)
-  z[x[0][i]]=i;
-
- while(j<100000000){
-   for(i=0;i<N;i++){
-     //     if(j%3==0)
-     a[i]^=a[x[1][i]];
-     //if(j%3==1)
-     //a[i]^=a[x[1][i]];
-
-   }
-
-   for(count=0;count<NN;count++){
-     for(i=count*8;i<8*count+8;i++){
-       aa[count]^=a[i];
-       if(i==0)
-	 aa[count]^=(aa[count]<<1);
-       if((1+count)*7+count!=i && i>0)
-	 aa[count]^=(aa[count]<<1);
-     }
+  
+  
+  while(j<100000000){
+    for(i=0;i<N;i++){
+      a[i]^=a[x[1][i]];
+      
+    }
     
-   }
-   //   count=0;
-   fwrite(aa,1,NN,fp);
- 
-   
-   for(i=0;i<N;i++)
-     w[i]=x[0][x[1][x[2][i]]]; //z[i]]];
-   
-   for(i=0;i<N;i++)
-     x[1][i]=w[i];
-   
-		   
-		    	  
-   j++;
- }
+    for(count=0;count<NN;count++){
+      for(i=count*8;i<8*count+8;i++){
+	aa[count]^=a[i];
+	if(i==0)
+	  aa[count]^=(aa[count]<<1);
+	if((1+count)*7+count!=i && i>0)
+	  aa[count]^=(aa[count]<<1);
+      }
+      
+    }
 
+    fwrite(aa,1,NN,fp);
+    
+    
+    for(i=0;i<N;i++)
+      w[i]=x[0][x[1][x[2][i]]]; //z[i]]];
+    
+    for(i=0;i<N;i++)
+      x[1][i]=w[i];
+    
+    
+    
+    j++;
+  }
+  
+  
+}
+
+
+int main(){
+ 
+  ufu();
+  data();
  
 return 0;
-}		   }
+}
