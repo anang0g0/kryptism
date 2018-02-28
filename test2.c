@@ -3,32 +3,12 @@
 #include <string.h>
 
 
-
-
 char str1[] = "1234567891011";
 char str2[] = "99999";
-char *set[10] ={"1000","2000","3000","4000","5000","6000","7000","8000","9000","10000"};
-char *set2[10] = {"100","200","300","400","500","600","700","800","900","1000"};
 char buf[640]; 
 unsigned short t[640],t2[640];
 unsigned short a[640],b[640];
 
-
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-
-
-
-
-char str1[] = "1234567891011";
-char str2[] = "99999";
-char *set[10] ={"1000","2000","3000","4000","5000","6000","7000","8000","9000","10000"};
-char *set2[10] = {"100","200","300","400","500","600","700","800","900","1000"};
-char buf[640]; 
-unsigned short t[640],t2[640];
-unsigned short a[640],b[640];
 
 
 
@@ -254,25 +234,6 @@ void bigdiv(){
   
   exit(1);
 
-  /*
-  n1[0]=setnum(s1);
-  for(ii=1;ii<i+1;ii++)
-    n1[ii]=t[ii];
-    
-  for(ii=0;ii<i+1;ii++)
-    printf("%d,",n1[ii]);
-  printf("\n");
-
-    n2[0]=setnum(s2);
-  for(ii=1;ii<j+1;ii++)
-    n2[ii]=t[ii];
-  for(ii=0;ii<j+1;ii++)
-    printf("%d,",n2[ii]);
-  printf("\n");
-
-printf("n1=%d\n",keta(s1));
-printf("n2=%d\n",keta(s2));
-  */
   
 }
 
