@@ -15,6 +15,23 @@ unsigned short a[640],b[640];
 
 
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+
+
+
+char str1[] = "1234567891011";
+char str2[] = "99999";
+char *set[10] ={"1000","2000","3000","4000","5000","6000","7000","8000","9000","10000"};
+char *set2[10] = {"100","200","300","400","500","600","700","800","900","1000"};
+char buf[640]; 
+unsigned short t[640],t2[640];
+unsigned short a[640],b[640];
+
+
+
 int setnum(char *str){
 
   int i;
@@ -185,10 +202,9 @@ bigsub(){
   //    c[0]=a[0]-b[0];
   }
   printf("%d\n",k-1);
-  //  c[k-1]=c[k-1]-1;
-  //  for(i=0;i<strlen(str1)/4+1;i++)
-    //    puts(c)[i];
+
     for(i=0;i<4;i++){
+      /*
     if(c[i]>0)
     snprintf(tmp1,640,"%d",c[i]);
     //*str=  *tmp1;
@@ -196,7 +212,8 @@ bigsub(){
     strcpy(tmp0,tmp1);
     tmp2=strcat(str,tmp0);
     *str=*tmp2;
-    printf("%s\n",str);
+    */
+    printf("%d\n",c[i]);
     }
 
   
@@ -204,53 +221,6 @@ bigsub(){
 }
 
 
-bigadd(char *srt1,char *str2){
-  int c[640],i,tmp=0;
-
-  for(i=0;i<640;i++)
-    c[i]=0;
-
-  
-  awase(str1,str2);
-
-  for(i=0;i<ind(str1)+1;i++){
-    c[i]=a[i]+b[i];
-    if(c[i]>9999){
-      c[i-1]+=c[i]/10000;
-      c[i]=c[i]%10000;
-    }
-   
-  }
-  for(i=0;i<ind(str1)+1;i++)
-    printf("%d,",c[i]);
-  printf("\n");
-}
-
-
-int cmp(int aa[],int bb[]){
-  int i,j,k,flg=0,n1,n2;
-
-
-  for(i=0;i<640;i++){
-    if(bb[i]>0)
-      n1=i;
-  }  
-  for(i=0;i<640;i++){
-    if(aa[i]>0)
-      n2=i;
-  }
-
-
-  if(n1>n2){
-    n1=n2;
-    return n1;
-  }
-  if(n1<n2)
-    return n1;
-  if(n1==n2)
-    return 0;
-    
-}
 
 
 
@@ -308,23 +278,12 @@ printf("n2=%d\n",keta(s2));
 
 
 
+
 main() {
   int i;
 
-  /*
-  setnum(str1);
-  for(i=0;i<strlen(str1)/4+1;i++)
-    printf("%d ",t[i]);
-  printf("\n");
-  setnum(str2);
-  for(i=0;i<strlen(str2)/4+1;i++)
-    printf("%d ",t[i]);
-  */
-  //bigsub(str1,str2);
   awase(str1,str2);
   printf("\n");
-  //  bigadd(str1,str2);  
-  //  bigmul(str1,str2);
 
   bigdiv();
 
