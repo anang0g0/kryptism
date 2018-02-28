@@ -3,12 +3,15 @@
 #include <string.h>
 
 
+
+
 char str1[] = "1234567891011";
 char str2[] = "99999";
+char *set[10] ={"1000","2000","3000","4000","5000","6000","7000","8000","9000","10000"};
+char *set2[10] = {"100","200","300","400","500","600","700","800","900","1000"};
 char buf[640]; 
 unsigned short t[640],t2[640];
 unsigned short a[640],b[640];
-
 
 
 
@@ -59,30 +62,16 @@ int setnum(char *str){
     return t[0];
 }
 
-int keta(char *str){
-  int len=0;
-
-  len=strlen(str);
-
-  return len;
-}
 
 
-int ind(char *str){
-
-    if(keta(str)%4==0)
-      return keta(str)/4;
-    if(keta(str)%4>0)
-      return keta(str)/4;
-}
 
 
 void awase(char *s1,char *s2){
   
     int i,j,k=0,ii=0,kk=0;
 
-    i=ind(s1);
-    j=ind(s2);
+    i(=strlen(s1)/4);
+    j=strlen(s2)/4;
     if(i>j){
       a[0]=setnum(s1);
       for(k=1;k<i+1;k++){
@@ -184,15 +173,6 @@ bigsub(){
   printf("%d\n",k-1);
 
     for(i=0;i<4;i++){
-      /*
-    if(c[i]>0)
-    snprintf(tmp1,640,"%d",c[i]);
-    //*str=  *tmp1;
-    
-    strcpy(tmp0,tmp1);
-    tmp2=strcat(str,tmp0);
-    *str=*tmp2;
-    */
     printf("%d\n",c[i]);
     }
 
@@ -210,12 +190,11 @@ void bigdiv(){
   int n1[640],n2[640],r[640];
   int ii,jj,count=0;
   char tank[]="0";
-  //char *str[][2]={"1","2","3","4","5","6","7","8","9","10"};
   char str[]="1";
   char *str0,*tmp;
   
-  i=keta(str1);
-  j=keta(str2);
+  i=strlen((str1));
+  j=strlen(str2);
 
   printf("%d\n",i);
   printf("%d\n",j);
@@ -233,10 +212,8 @@ void bigdiv(){
 
   
   exit(1);
-
   
 }
-
 
 
 
@@ -247,8 +224,5 @@ main() {
   printf("\n");
 
   bigdiv();
-
-
-
   
 }
