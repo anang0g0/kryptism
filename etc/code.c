@@ -97,9 +97,7 @@ int main(){
  
   i=0;
 
-  y=y;
-  nou
-    woyomiitesimutaa[[while(d<6){
+while(d<6){
        k=bi(i);
        i++;
        //       printf("%d,%d,%d %d\n",k.x,k.y,k.z,count);
