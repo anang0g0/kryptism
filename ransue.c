@@ -111,10 +111,8 @@ void data(){
 
 int main(){
  
-  ufu();
-    data();
-//    cycle();
- \\   cycle2();
-  
+ufu();
+data();
+
 return 0;
 }
