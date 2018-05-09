@@ -2,10 +2,12 @@
 #include <time.h>
 #include <stdlib.h>
 
-#define N 32
-#define M 32
-#define NN 4
+#define N 24
+#define M 24
+#define NN 3
 
+
+unsigned char xx[N];
 unsigned char x[5][M]={-1};
 
 void ufu(){
@@ -13,7 +15,7 @@ int i,k,j,l;
 time_t t;
 
  srand(time(&t)+clock());
- 
+
 int ii;
 for(ii=0;ii<3;ii++){
 for(i=0;i<M;i++)
@@ -48,11 +50,10 @@ printf("%d\n",i);
 
 
 
-
 void data(){
   unsigned long long int i,j=0,k=0;
-  unsigned char a[N]={1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-  
+  unsigned char a[N]={1,1,1,1,1,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,0,0,0,0};
+
   int flag=0;
   int flg=0;
   int count=0;
@@ -65,19 +66,19 @@ void data(){
   int cnt=0;
   int ff=0,flg2;
   unsigned char ww[N];
-
+  unsigned char a1[4][N],a2[N];
     flg2=0;
- fp=fopen("rand.dat","wb");
- unsigned char yy[N]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+    fp=fopen("rand.dat","wb");
+ //unsigned char yy[N]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 
- 
-   
-   while(j<100000000){
-    
+
+   while(j<40000000){
+
      for(i=0;i<N;i++)
-       a[i]^=a[x[1][i]]; 
-     
-     
+       a[i]^=a[x[1][i]];
+//       for(i=0;i<N;i++)
+  //     a1[j][i]=a[i];
+
      for(cnt=0;cnt<NN;cnt++){
        for(i=cnt*8;i<8*cnt+8;i++){
 	 aa[cnt]^=a[i];
@@ -86,33 +87,35 @@ void data(){
 	 if((1+cnt)*7+cnt!=i && i>0)
 	   aa[cnt]^=(aa[cnt]<<1);
        }
-       
+
      }
 
-          
-               
+
+
      fwrite(aa,1,NN,fp);
-     
-     
+
+
      for(i=0;i<N;i++)
        w[i]=x[0][x[1][x[2][i]]]; //z[i]]];
-     
+
      for(i=0;i<N;i++){
-       x[1][i]=w[i];       
+       x[1][i]=w[i];
      }
 
     j++;
    }
+
    fclose(fp);
-   
+
 }
 
 
 
 int main(){
- 
+
 ufu();
 data();
 
 return 0;
 }
+
