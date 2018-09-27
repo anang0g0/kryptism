@@ -1,3 +1,5 @@
+//credit: made by Y.Terasawa & K.Ohkubo
+
 #include <stdio.h>
 #include <stdlib.h>
 
