@@ -23,7 +23,7 @@
 
 2016年以降、病気が悪化して全く研究ができない状態でもあったので、これからまた始めようと思っています。
 
-</br>
+<hr>
 
 2018/08/06</br>
 この投稿に関するプログラム：https://github.com/anang0g0/kryptism/blob/master/perm1_attack.py</br>
